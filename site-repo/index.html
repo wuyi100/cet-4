@@ -1,0 +1,3197 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1218">
+<meta name="format-detection" content="telephone=no">
+<title>CET-4 备考台</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%237c6cf5'/%3E%3Ctext x='32' y='44' font-size='30' font-weight='700' font-family='system-ui,-apple-system,Segoe UI,sans-serif' text-anchor='middle' fill='%23ffffff'%3EC4%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%237c6cf5'/%3E%3Ctext x='32' y='44' font-size='30' font-weight='700' font-family='system-ui,-apple-system,Segoe UI,sans-serif' text-anchor='middle' fill='%23ffffff'%3EC4%3C/text%3E%3C/svg%3E">
+<style>
+/* ==========================================================================
+   CET-4 备考台 · 样式（无外部依赖，无字体/CDN 请求）
+   ========================================================================== */
+
+:root {
+  --bg: #0f1218;
+  --bg2: #151a23;
+  --card: #1a2029;
+  --card2: #212a36;
+  --line: #2a3342;
+  --line2: #35414f;
+  --text: #e9eef7;
+  --dim: #97a3b6;
+  --dim2: #6f7c90;
+  --acc: #5b8cff;
+  --ok: #34c98b;
+  --warn: #f0a23b;
+  --bad: #ef5f6b;
+  --r: 16px;
+  --r-sm: 10px;
+  --shadow: 0 8px 24px rgba(0, 0, 0, .28);
+  --mc: #5b8cff;
+}
+
+html[data-theme="light"] {
+  --bg: #f2f5fa;
+  --bg2: #ffffff;
+  --card: #ffffff;
+  --card2: #eef2f8;
+  --line: #e0e6f0;
+  --line2: #cfd8e6;
+  --text: #17202e;
+  --dim: #5a6a80;
+  --dim2: #8593a6;
+  --shadow: 0 6px 18px rgba(23, 32, 46, .08);
+}
+
+* { box-sizing: border-box; }
+
+/* hidden 属性必须真的隐藏（.modal-wrap 的 display 会盖掉 UA 默认值） */
+[hidden] { display: none !important; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background:
+    radial-gradient(1100px 500px at 15% -10%, rgba(91, 140, 255, .16), transparent 60%),
+    radial-gradient(900px 460px at 95% 0%, rgba(199, 125, 255, .12), transparent 60%),
+    var(--bg);
+  min-height: 100vh;
+}
+
+a { color: var(--acc); text-decoration: none; }
+b { font-weight: 650; }
+h1, h2, h3 { margin: 0; font-weight: 650; line-height: 1.3; }
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ---------------- 顶栏 ---------------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  padding-top: calc(10px + env(safe-area-inset-top));
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand { display: flex; align-items: center; gap: 9px; }
+.logo {
+  display: grid;
+  place-items: center;
+  width: 30px; height: 30px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #5b8cff, #c77dff);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+.brand-txt { font-weight: 650; font-size: 15px; letter-spacing: .2px; }
+.top-link { font-size: 13px; color: var(--dim); }
+
+/* ---------------- 底部 / 顶部标签 ---------------- */
+.tabs {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 40;
+  display: flex;
+  padding-bottom: env(safe-area-inset-bottom);
+  background: color-mix(in srgb, var(--bg2) 96%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--line);
+}
+
+.tabs a {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 9px 0 8px;
+  font-size: 11px;
+  color: var(--dim2);
+  transition: color .15s;
+}
+.tabs a .ti { font-size: 17px; line-height: 1; }
+.tabs a.active { color: var(--acc); }
+.tabs a.active .ti { transform: translateY(-1px); }
+
+/* ---------------- 主区 ---------------- */
+.main { flex: 1; }
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 14px 14px calc(84px + env(safe-area-inset-bottom));
+}
+
+.page-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.title { font-size: 22px; }
+.sec-h {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 20px 2px 9px;
+  font-size: 14px;
+  color: var(--dim);
+  letter-spacing: .3px;
+}
+.sec-h h2, .sec-h .h2 { font-size: 14px; color: var(--dim); font-weight: 600; }
+
+/* ---------------- 卡片 / 文本 ---------------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 14px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .02) inset;
+}
+.card + .card { margin-top: 10px; }
+
+.muted { color: var(--dim); font-size: 13px; }
+.small { font-size: 12px; }
+.center { text-align: center; }
+.big { font-size: 20px; }
+.ok { color: var(--ok); }
+.bad { color: var(--bad); }
+.link { font-size: 13px; }
+
+.row { display: flex; align-items: center; }
+.row.between { justify-content: space-between; }
+.row.gap { gap: 10px; }
+.row.gap8 { gap: 8px; }
+.row.wrap { flex-wrap: wrap; }
+.mt { margin-top: 12px; }
+.mt8 { margin-top: 8px; }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
+/* ---------------- 按钮 ---------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  min-height: 40px;
+  border: 1px solid var(--line2);
+  border-radius: var(--r-sm);
+  background: var(--card2);
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform .08s, filter .15s, background .15s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.btn:active { transform: scale(.98); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn-primary {
+  background: linear-gradient(135deg, #5b8cff, #4a72e6);
+  border-color: transparent;
+  color: #fff;
+  font-weight: 600;
+}
+.btn-ok { background: rgba(52, 201, 139, .16); border-color: rgba(52, 201, 139, .45); color: var(--ok); font-weight: 600; }
+.btn-danger { background: rgba(239, 95, 107, .14); border-color: rgba(239, 95, 107, .45); color: var(--bad); font-weight: 600; }
+.btn-ghost { background: transparent; }
+.btn.sm, .btn-sm { min-height: 32px; padding: 6px 10px; font-size: 13px; }
+.btn.wide { width: 100%; margin-top: 10px; }
+
+.icon-btn {
+  border: 0;
+  background: transparent;
+  color: var(--dim2);
+  font-size: 18px;
+  line-height: 1;
+  padding: 6px 8px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-family: inherit;
+}
+.icon-btn:hover { background: var(--card2); color: var(--text); }
+.icon-btn.txt { font-size: 13px; color: var(--dim); }
+.icon-btn.txt.danger { color: var(--bad); }
+
+/* ---------------- 徽标 / 标签 ---------------- */
+.pill {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: var(--card2);
+  color: var(--dim);
+  border: 1px solid var(--line);
+  white-space: nowrap;
+}
+.pill-m {
+  background: color-mix(in srgb, var(--mc) 16%, transparent);
+  border-color: color-mix(in srgb, var(--mc) 42%, transparent);
+  color: var(--mc);
+  font-weight: 600;
+}
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  background: var(--card2);
+  color: var(--dim);
+  border: 1px solid var(--line);
+  white-space: nowrap;
+}
+.badge-ok { color: var(--ok); background: rgba(52, 201, 139, .12); border-color: rgba(52, 201, 139, .35); }
+.badge-bad { color: var(--bad); background: rgba(239, 95, 107, .12); border-color: rgba(239, 95, 107, .35); }
+.badge-warn { color: var(--warn); background: rgba(240, 162, 59, .12); border-color: rgba(240, 162, 59, .38); }
+.tag {
+  font-size: 11px;
+  color: var(--dim2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1px 6px;
+}
+.tag-manual { color: var(--warn); border-color: rgba(240, 162, 59, .4); }
+
+/* ---------------- 首页 ---------------- */
+.statusbar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+}
+.sb-num { display: flex; flex-direction: column; gap: 1px; }
+.sb-num b { font-size: 28px; letter-spacing: -1px; line-height: 1.05; }
+.sb-num span, .sb-label { font-size: 11.5px; color: var(--dim); }
+.sb-label { color: var(--dim2); letter-spacing: .3px; }
+.sb-meta { font-size: 13px; min-width: 0; }
+.sb-meta .muted { font-size: 12px; }
+.sb-goal { text-align: right; }
+.sb-goal b { font-size: 18px; }
+.sb-goal .muted { font-size: 11px; }
+
+.today-card {
+  border-left: 4px solid var(--mc);
+}
+.today-card.ot { background: rgba(240, 162, 59, .10); border-color: rgba(240, 162, 59, .4); }
+.task-txt { margin: 10px 0 8px; font-size: 15.5px; line-height: 1.6; }
+
+.banner-warn {
+  margin: 10px 0;
+  padding: 10px 12px;
+  border-radius: var(--r-sm);
+  background: rgba(240, 162, 59, .12);
+  border: 1px solid rgba(240, 162, 59, .4);
+  color: var(--warn);
+  font-size: 13px;
+}
+
+.memo-list { list-style: none; margin: 10px 0 0; padding: 0; }
+.memo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.memo:last-child { border-bottom: 0; }
+.memo-txt { flex: 1; font-size: 14px; word-break: break-word; }
+.memo.done .memo-txt, .done-txt { color: var(--dim2); text-decoration: line-through; }
+.memo-row { padding: 6px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
+.memo-done { margin-top: 10px; }
+.memo-done summary { font-size: 12px; color: var(--dim2); cursor: pointer; }
+
+.cb {
+  width: 20px; height: 20px;
+  accent-color: var(--acc);
+  flex: 0 0 auto;
+  cursor: pointer;
+}
+
+.weekstrip {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-top: 12px;
+}
+.wcell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 6px 2px;
+  border-radius: 10px;
+  background: var(--card2);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-size: 11px;
+}
+.wcell .wd { color: var(--dim2); font-size: 10px; }
+.wcell .wdate { font-weight: 600; font-size: 13px; }
+.wcell .wdot { width: 7px; height: 7px; border-radius: 50%; background: var(--line2); }
+.wcell.st-done .wdot { background: var(--ok); }
+.wcell.st-missed .wdot { background: var(--bad); }
+.wcell.st-done { border-color: rgba(52, 201, 139, .35); }
+.wcell.st-missed { border-color: rgba(239, 95, 107, .35); }
+.wcell.is-today { outline: 2px solid var(--acc); outline-offset: -1px; }
+
+.mgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.mcard {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px;
+  border-radius: var(--r);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--mc);
+  color: var(--text);
+  min-height: 92px;
+}
+.mcard:active { background: var(--card2); }
+.mname { font-size: 12.5px; color: var(--dim); }
+.mval { font-size: 19px; line-height: 1.3; }
+.mcap { font-size: 11.5px; color: var(--dim2); margin-top: auto; }
+
+.saves .row { padding: 3px 0; font-size: 13px; }
+
+/* ---------------- 分段控件 ---------------- */
+.seg {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--card2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow-x: auto;
+}
+.seg-item {
+  flex: 1;
+  text-align: center;
+  padding: 8px 10px;
+  border-radius: 9px;
+  font-size: 13.5px;
+  color: var(--dim);
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.seg-item.active {
+  background: var(--card);
+  color: var(--text);
+  font-weight: 600;
+  box-shadow: var(--shadow);
+}
+.seg.small .seg-item { padding: 6px 8px; font-size: 13px; }
+
+/* ---------------- 今日计划 ---------------- */
+.day-list { display: flex; flex-direction: column; gap: 8px; }
+.day-compact {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto auto;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--mc);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+.day-compact.is-today { outline: 1px solid var(--acc); }
+.day-compact.missed { background: rgba(239, 95, 107, .09); }
+.day-compact.ot { background: rgba(240, 162, 59, .10); }
+.dc-date { color: var(--dim); font-size: 12px; white-space: nowrap; }
+.dc-task {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+}
+.dc-min { color: var(--dim2); font-size: 11.5px; white-space: nowrap; }
+
+.day { border-left: 4px solid var(--mc); }
+.day.missed { background: rgba(239, 95, 107, .09); border-color: rgba(239, 95, 107, .4); }
+.day.ot { background: rgba(240, 162, 59, .09); }
+.day.is-today { box-shadow: 0 0 0 1px var(--acc) inset; }
+.day-date { font-weight: 650; font-size: 14px; }
+.day .foot { margin-top: 10px; font-size: 11.5px; }
+
+.status-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 10px 0; }
+.sbtn {
+  padding: 9px 4px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--card2);
+  color: var(--dim);
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+}
+.sbtn.on { font-weight: 650; color: var(--text); border-color: var(--line2); }
+.sbtn-ok.on { background: rgba(52, 201, 139, .18); color: var(--ok); border-color: rgba(52, 201, 139, .5); }
+.sbtn-bad.on { background: rgba(239, 95, 107, .18); color: var(--bad); border-color: rgba(239, 95, 107, .5); }
+
+/* ---------------- 表单 ---------------- */
+.field { margin: 10px 0; }
+.label {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--dim);
+  margin-bottom: 5px;
+}
+.req { color: var(--bad); }
+.counter { margin-left: auto; font-size: 11px; color: var(--dim2); font-weight: 400; }
+
+.input {
+  width: 100%;
+  padding: 10px 11px;
+  min-height: 40px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line2);
+  background: var(--bg2);
+  color: var(--text);
+  font-size: 16px; /* 防 iOS 聚焦缩放 */
+  font-family: inherit;
+  line-height: 1.45;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.input:focus { outline: 2px solid color-mix(in srgb, var(--acc) 55%, transparent); outline-offset: -1px; }
+textarea.input { resize: vertical; min-height: 56px; }
+select.input {
+  background-image: linear-gradient(45deg, transparent 50%, var(--dim) 50%),
+    linear-gradient(135deg, var(--dim) 50%, transparent 50%);
+  background-position: calc(100% - 16px) 18px, calc(100% - 11px) 18px;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 30px;
+}
+.area-task { font-size: 15px; }
+
+.checks { display: flex; flex-wrap: wrap; gap: 8px; }
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: var(--bg2);
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.form { border-left: 4px solid var(--mc); }
+.form-host { margin: 10px 0; }
+.form-grid { display: grid; grid-template-columns: 1fr; gap: 0 10px; }
+
+.steps { display: flex; flex-direction: column; gap: 6px; margin-bottom: 8px; }
+.step { display: flex; align-items: center; gap: 8px; }
+.step .step-input { flex: 1; font-size: 14px; min-height: 36px; padding: 7px 10px; }
+.step.done .step-input { color: var(--dim2); text-decoration: line-through; }
+
+.empty-line { color: var(--dim2); font-size: 13px; padding: 8px 0; }
+.empty { text-align: center; padding: 22px 14px; }
+.empty p { margin: 6px 0; }
+.empty .btn { margin-top: 8px; }
+
+/* ---------------- 模块记录 ---------------- */
+.rec-list { display: flex; flex-direction: column; gap: 8px; }
+.rec { border-left: 3px solid var(--mc); padding: 12px; }
+.rec-date { font-size: 12px; color: var(--dim); }
+.rec-main { margin: 6px 0 2px; font-size: 14.5px; }
+.rec .muted.small { font-size: 12px; word-break: break-word; }
+
+/* ---------------- 统计 ---------------- */
+.bar {
+  height: 9px;
+  border-radius: 999px;
+  background: var(--card2);
+  overflow: hidden;
+  margin-top: 9px;
+}
+.bar.thin { height: 7px; margin-top: 0; flex: 1; }
+.bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--acc), #7aa2ff);
+  transition: width .3s;
+}
+.bar-fill.ok { background: linear-gradient(90deg, #34c98b, #6fe3b3); }
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 52px 1fr 66px;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 0;
+  font-size: 12.5px;
+}
+.bar-row .bl { color: var(--dim); white-space: nowrap; }
+.bar-row .bv { color: var(--text); text-align: right; font-size: 12px; }
+
+.vbars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 150px;
+  padding-top: 4px;
+}
+.vbar { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; height: 100%; }
+.vb-val { font-size: 10.5px; color: var(--dim); }
+.vb-track { flex: 1; width: 100%; display: flex; align-items: flex-end; }
+.vb-col {
+  width: 100%;
+  border-radius: 6px 6px 2px 2px;
+  background: linear-gradient(180deg, #7aa2ff, #4a72e6);
+  min-height: 6px;
+}
+.vb-lab { font-size: 10px; color: var(--dim2); white-space: nowrap; }
+
+/* ---------------- 复盘 ---------------- */
+.rv { border-left: 3px solid var(--line2); }
+.rv-mod {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--card2);
+  border-left: 3px solid var(--mc);
+}
+.rv-name { font-size: 14px; }
+.rv-rate { font-size: 15px; font-weight: 650; }
+.rate-box {
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: var(--r-sm);
+  background: var(--bg2);
+  border: 1px dashed var(--line2);
+}
+.rv-mod .field { margin: 8px 0; }
+.rv-mod .grid3 .field { margin: 6px 0; }
+
+/* ---------------- 对话框 / 提示 ---------------- */
+.modal-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, .55);
+  backdrop-filter: blur(3px);
+}
+.modal {
+  width: 100%;
+  max-width: 380px;
+  background: var(--card);
+  border: 1px solid var(--line2);
+  border-radius: var(--r);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .45);
+}
+.modal-h { padding: 14px 16px 4px; font-weight: 650; font-size: 15px; }
+.modal-b { padding: 4px 16px 8px; font-size: 14px; color: var(--dim); }
+.modal-b p { margin: 6px 0; }
+.modal-f {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 16px calc(14px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+}
+
+.toast-wrap {
+  position: fixed;
+  left: 0; right: 0;
+  bottom: calc(76px + env(safe-area-inset-bottom));
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+}
+.toast {
+  max-width: 90vw;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: rgba(26, 32, 41, .96);
+  border: 1px solid var(--line2);
+  color: #eaf0fa;
+  font-size: 13px;
+  box-shadow: var(--shadow);
+  animation: toast-in .18s ease-out;
+  transition: opacity .3s, transform .3s;
+}
+html[data-theme="light"] .toast { background: rgba(23, 32, 46, .94); }
+.toast-ok { border-color: rgba(52, 201, 139, .5); }
+.toast-bad { border-color: rgba(239, 95, 107, .55); }
+.toast-warn { border-color: rgba(240, 162, 59, .55); }
+.toast.out { opacity: 0; transform: translateY(6px); }
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------- 桌面 ---------------- */
+@media (min-width: 768px) {
+  body { font-size: 15.5px; }
+
+  .tabs {
+    position: static;
+    order: 1;
+    max-width: 720px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 14px;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-top: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .tabs a {
+    flex: 0 0 auto;
+    flex-direction: row;
+    gap: 6px;
+    padding: 11px 16px;
+    font-size: 13.5px;
+    border-bottom: 2px solid transparent;
+  }
+  .tabs a.active { border-bottom-color: var(--acc); }
+  .main { order: 2; }
+  .page { padding: 18px 14px 40px; }
+  .toast-wrap { bottom: 28px; }
+  .mgrid { grid-template-columns: repeat(3, 1fr); }
+  .form-grid { grid-template-columns: 1fr 1fr; }
+  .form-grid .field-wide { grid-column: 1 / -1; }
+  .day-list { gap: 10px; }
+  .bar-row { grid-template-columns: 64px 1fr 80px; font-size: 13px; }
+}
+
+/* 打印：只保留内容 */
+@media print {
+  .tabs, .topbar, .toast-wrap { display: none; }
+  body { background: #fff; color: #000; }
+  .card { border-color: #ccc; box-shadow: none; }
+}
+
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">C4</span>
+      <span class="brand-txt">CET-4 备考台</span>
+    </div>
+    <a class="top-link" href="#/data/settings">设置</a>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <a href="#/home" data-tab="home"><span class="ti">◎</span><span>首页</span></a>
+    <a href="#/today" data-tab="today"><span class="ti">✓</span><span>今日</span></a>
+    <a href="#/data" data-tab="data"><span class="ti">▤</span><span>数据</span></a>
+  </nav>
+
+  <main class="main" id="view"></main>
+</div>
+
+<div class="toast-wrap" id="toasts" aria-live="polite"></div>
+<div class="modal-wrap" id="modals" hidden></div>
+
+<script>
+/* src/data/taxonomy.js */
+/* CET-4 备考台 · 分类常量（唯一来源） */
+window.CET4 = window.CET4 || {};
+
+CET4.TAX = {
+  modules: ['听力', '阅读', '写作', '翻译', '词汇', '模考', '休息'],
+
+  /* 有独立记录表的模块（休息·复盘的产出是周复盘，不单独建表） */
+  logModules: ['listening', 'reading', 'writing', 'translation', 'vocab', 'mock'],
+
+  logTitles: {
+    listening: '听力', reading: '阅读', writing: '写作',
+    translation: '翻译', vocab: '词汇', mock: '模考'
+  },
+
+  colors: {
+    '听力': '#5b8cff', '阅读': '#34c98b', '写作': '#f0a23b',
+    '翻译': '#c77dff', '词汇': '#2fc7d6', '模考': '#ef5f6b', '休息': '#8b93a7'
+  },
+
+  errorTypes: [
+    '预读不足', '信号词没抓住', '同义替换没认出', '生词', '题干没圈准',
+    '选项主语不一致', '搭配不准确', '词性混用', '逻辑连接缺失', '时间分配', '其他'
+  ],
+
+  essayTypes: ['现象类', '对比类', '图表类', '观点类', '书信类'],
+  translationTopics: ['文化', '社会', '经济', '其他'],
+  listeningMaterials: ['短篇新闻', '长对话', '篇章听力'],
+  listeningMethods: ['逐句听写', '跟读', '复述'],
+  readingTypes: ['选词填空', '长篇阅读', '仔细阅读'],
+  mockTypes: ['全卷', '听力+阅读'],
+
+  /* 7 个周段，索引 1..7 */
+  weeks: [
+    { idx: 1, label: '第1周', start: '2026-10-26', end: '2026-11-01' },
+    { idx: 2, label: '第2周', start: '2026-11-02', end: '2026-11-08' },
+    { idx: 3, label: '第3周', start: '2026-11-09', end: '2026-11-15' },
+    { idx: 4, label: '第4周', start: '2026-11-16', end: '2026-11-22' },
+    { idx: 5, label: '第5周', start: '2026-11-23', end: '2026-11-29' },
+    { idx: 6, label: '第6周', start: '2026-11-30', end: '2026-12-06' },
+    { idx: 7, label: '考前周', start: '2026-12-07', end: '2026-12-12' }
+  ],
+
+  reviewDates: [
+    '2026-11-01', '2026-11-08', '2026-11-15', '2026-11-22',
+    '2026-11-29', '2026-12-06', '2026-12-12'
+  ],
+  reviewModules: ['听力', '阅读', '写作', '翻译'],
+
+  exam: { date: '2026-12-12', time: '09:00' },
+
+  weekdays: ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
+};
+
+</script>
+<script>
+/* src/data/plan.js */
+/* CET-4 备考台 · 48 天计划常量（与 PRD 附录 A 逐行一致） */
+window.CET4 = window.CET4 || {};
+
+(function () {
+  var ROWS = [
+    ['2026-10-26', '周一', '听力', '短篇新闻3篇精听：逐句听写+跟读+批改', 45],
+    ['2026-10-27', '周二', '阅读', '选词填空1篇+长篇阅读1篇：限时完成并核对', 50],
+    ['2026-10-28', '周三', '写作', '拆解三段式结构：抄写1篇范文并仿写观点段', 40],
+    ['2026-10-29', '周四', '翻译', '中国文化段落1篇：先自译，再对照参考译文', 40],
+    ['2026-10-30', '周五', '词汇', '高频词List 1（60词）+ 当日错词回顾', 30],
+    ['2026-10-31', '周六', '模考', '真题模考（听力+阅读，限时120分钟）+ 对答案', 125],
+    ['2026-11-01', '周日', '休息', '回看本周错题，写下3个最大卡点', 30],
+    ['2026-11-02', '周一', '听力', '长对话2篇精听：圈信号词（but/however/so）+ 跟读', 45],
+    ['2026-11-03', '周二', '阅读', '仔细阅读2篇：题干定位+同义替换标注', 50],
+    ['2026-11-04', '周三', '写作', '现象类作文1篇：先列提纲，再限时成文', 50],
+    ['2026-11-05', '周四', '翻译', '社会主题段落1篇：拆主干+润色，积累5个搭配', 40],
+    ['2026-11-06', '周五', '词汇', '高频词List 2（60词）+ 同义替换10组', 35],
+    ['2026-11-07', '周六', '模考', '真题模考（全卷，按考试流程）+ 估分', 140],
+    ['2026-11-08', '周日', '休息', '整理错题本：听力、阅读各挑5题重看', 30],
+    ['2026-11-09', '周一', '听力', '新闻2篇+长对话1篇：数字、时间、转折专项', 50],
+    ['2026-11-10', '周二', '阅读', '长篇阅读1篇：段落匹配+关键词圈画', 50],
+    ['2026-11-11', '周三', '写作', '对比类作文1篇：套用2个万能句式并自改', 50],
+    ['2026-11-12', '周四', '翻译', '经济主题段落1篇：积累10个固定搭配', 40],
+    ['2026-11-13', '周五', '词汇', '高频词List 3（60词）+ 熟词僻义10个', 35],
+    ['2026-11-14', '周六', '模考', '真题模考（全卷）+ 错题归因', 140],
+    ['2026-11-15', '周日', '休息', '只复习错题本，不做新题；标记重复错因', 30],
+    ['2026-11-16', '周一', '听力', '短篇新闻3篇：1.25倍速精听+复述', 50],
+    ['2026-11-17', '周二', '阅读', '选词填空2篇+仔细阅读1篇：限时训练', 55],
+    ['2026-11-18', '周三', '写作', '图表/书信类作文1篇：限时30分钟', 50],
+    ['2026-11-19', '周四', '翻译', '文化主题段落1篇：限时25分钟+对照', 40],
+    ['2026-11-20', '周五', '词汇', '高频词List 4（60词）+ 错词重测', 35],
+    ['2026-11-21', '周六', '模考', '真题模考（全卷，严格计时）+ 记录分数', 140],
+    ['2026-11-22', '周日', '休息', '复盘本周模考，写下3条具体改进', 30],
+    ['2026-11-23', '周一', '听力', '整套听力限时+精听错题3题', 55],
+    ['2026-11-24', '周二', '阅读', '整套阅读限时+定位复盘', 60],
+    ['2026-11-25', '周三', '写作', '观点类作文1篇：限时30分钟+自改', 50],
+    ['2026-11-26', '周四', '翻译', '社会主题段落1篇：限时25分钟+自改', 40],
+    ['2026-11-27', '周五', '词汇', '高频词List 5（60词）+ 作文词伙10组', 35],
+    ['2026-11-28', '周六', '模考', '真题模考（全卷）+ 逐题归因', 140],
+    ['2026-11-29', '周日', '休息', '回看错因分类，找出重复最多的1类', 30],
+    ['2026-11-30', '周一', '听力', '错题精听：只做曾经错过的题型', 50],
+    ['2026-12-01', '周二', '阅读', '错题重做：仔细阅读2篇+长篇1篇', 55],
+    ['2026-12-02', '周三', '写作', '默写作文模板+限时1篇', 50],
+    ['2026-12-03', '周四', '翻译', '高频主题段落2篇：只列主干+关键搭配', 40],
+    ['2026-12-04', '周五', '词汇', '高频词List 6（60词）+ 全部错词过一遍', 35],
+    ['2026-12-05', '周六', '模考', '最后一次全真模考（全卷）+ 估分', 140],
+    ['2026-12-06', '周日', '休息', '制定考前周清单，整理证件、耳机、文具', 30],
+    ['2026-12-07', '周一', '词汇', '高频词最后过一遍+作文模板/翻译搭配速记', 40],
+    ['2026-12-08', '周二', '模考', '最后一次全真模考（听力+阅读，严格计时）', 125],
+    ['2026-12-09', '周三', '听力', '模考错题精听+信号词清单回顾', 40],
+    ['2026-12-10', '周四', '写作', '作文模板默写1遍+翻译高频句10句', 40],
+    ['2026-12-11', '周五', '休息', '只看错题本和模板，22:30前睡', 30],
+    ['2026-12-12', '周六', '模考', 'CET-4正式考试（9:00–11:20），考后不对答案', 140]
+  ];
+
+  CET4.PLAN = ROWS.map(function (r) {
+    return { date: r[0], weekday: r[1], module: r[2], task: r[3], plannedMinutes: r[4] };
+  });
+
+  /* Excel 里唯一一条已有记录，作为初始数据 */
+  CET4.SEED_RECORD = {
+    date: '2026-10-26',
+    status: 'done',
+    actualMinutes: 40,
+    blocker: '注意力不集中；信息标注缺失',
+    adjustment: '将细节信息标注清楚+与问题快速对应'
+  };
+})();
+
+</script>
+<script>
+/* src/core/ui.js */
+/* CET-4 备考台 · 极简 DOM 工具、提示、对话框 */
+window.CET4 = window.CET4 || {};
+
+CET4.UI = (function () {
+  function append(parent, kids) {
+    for (var i = 0; i < kids.length; i++) {
+      var k = kids[i];
+      if (k === null || k === undefined || k === false || k === true) continue;
+      if (Array.isArray(k)) { append(parent, k); continue; }
+      if (typeof k === 'string' || typeof k === 'number') {
+        parent.appendChild(document.createTextNode(String(k)));
+      } else if (k.nodeType) {
+        parent.appendChild(k);
+      }
+    }
+  }
+
+  function h(tag, props) {
+    var e = document.createElement(tag);
+    if (props) {
+      for (var k in props) {
+        if (!Object.prototype.hasOwnProperty.call(props, k)) continue;
+        var v = props[k];
+        if (v === null || v === undefined || v === false) continue;
+        if (k === 'class') e.className = v;
+        else if (k === 'text') e.textContent = v;
+        else if (k === 'dataset') { for (var d in v) e.dataset[d] = v[d]; }
+        else if (k === 'style' && typeof v === 'object') { for (var s in v) e.style[s] = v[s]; }
+        else if (k.length > 2 && k.slice(0, 2) === 'on' && typeof v === 'function') {
+          e.addEventListener(k.slice(2), v);
+        } else if (v === true) e.setAttribute(k, '');
+        else e.setAttribute(k, v);
+      }
+    }
+    append(e, Array.prototype.slice.call(arguments, 2));
+    return e;
+  }
+
+  function frag() {
+    var f = document.createDocumentFragment();
+    append(f, Array.prototype.slice.call(arguments));
+    return f;
+  }
+
+  function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); }
+
+  function toast(msg, kind) {
+    var wrap = document.getElementById('toasts');
+    if (!wrap) return;
+    var t = h('div', { class: 'toast' + (kind ? ' toast-' + kind : ''), text: msg });
+    wrap.appendChild(t);
+    setTimeout(function () { t.classList.add('out'); }, 2400);
+    setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 2800);
+  }
+
+  /* 通用确认框，返回 Promise<boolean> */
+  function ask(opts) {
+    return new Promise(function (resolve) {
+      var wrap = document.getElementById('modals');
+      var body = opts.body;
+      var typedOk = true;
+      var input = null;
+
+      if (opts.requireText) {
+        input = h('input', {
+          class: 'input', type: 'text', placeholder: '输入「' + opts.requireText + '」',
+          oninput: function () { typedOk = input.value.trim() === opts.requireText; okBtn.disabled = !typedOk; }
+        });
+        typedOk = false;
+      }
+
+      var okBtn = h('button', {
+        class: 'btn ' + (opts.danger ? 'btn-danger' : 'btn-primary'),
+        text: opts.okText || '确定',
+        disabled: !typedOk,
+        onclick: function () { close(true); }
+      });
+
+      var card = h('div', { class: 'modal' },
+        h('div', { class: 'modal-h', text: opts.title || '确认' }),
+        h('div', { class: 'modal-b' },
+          typeof body === 'string' ? h('p', { text: body }) : (body || null),
+          input ? h('div', { class: 'field' }, input) : null
+        ),
+        h('div', { class: 'modal-f' },
+          h('button', { class: 'btn btn-ghost', text: '取消', onclick: function () { close(false); } }),
+          okBtn
+        )
+      );
+
+      function close(v) {
+        wrap.hidden = true;
+        clear(wrap);
+        document.removeEventListener('keydown', onKey);
+        resolve(v);
+      }
+      function onKey(e) { if (e.key === 'Escape') close(false); }
+
+      document.addEventListener('keydown', onKey);
+      clear(wrap);
+      wrap.appendChild(card);
+      wrap.hidden = false;
+      wrap.onclick = function (e) { if (e.target === wrap) close(false); };
+      if (input) setTimeout(function () { input.focus(); }, 30);
+    });
+  }
+
+  function fmtMinutes(n) {
+    if (n === null || n === undefined || n === '' || isNaN(n)) return '—';
+    var v = Math.round(+n);
+    if (v < 60) return v + ' 分钟';
+    var hh = Math.floor(v / 60), mm = v % 60;
+    return hh + ' 小时' + (mm ? ' ' + mm + ' 分' : '');
+  }
+
+  function fmtClock(isoDate, isoTime) {
+    if (!isoDate) return '';
+    var parts = isoDate.split('-');
+    return (+parts[1]) + '/' + (+parts[2]) + (isoTime ? ' ' + isoTime : '');
+  }
+
+  function fmtStamp(iso) {
+    if (!iso) return '从未';
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return '从未';
+    var p = function (n) { return n < 10 ? '0' + n : '' + n; };
+    return (d.getMonth() + 1) + '/' + d.getDate() + ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
+  }
+
+  /* 逗号/顿号/空格分隔 → 数组；空串 → [] */
+  function parseTags(str) {
+    if (!str) return [];
+    return String(str).split(/[,，、;；\s]+/).map(function (s) { return s.trim(); })
+      .filter(function (s) { return s.length > 0; });
+  }
+
+  function tagsToStr(arr) { return (arr || []).join('，'); }
+
+  return {
+    h: h, frag: frag, clear: clear, toast: toast, ask: ask,
+    fmtMinutes: fmtMinutes, fmtClock: fmtClock, fmtStamp: fmtStamp,
+    parseTags: parseTags, tagsToStr: tagsToStr
+  };
+})();
+
+</script>
+<script>
+/* src/core/store.js */
+/* CET-4 备考台 · 状态存储：单键 JSON、自动保存、.prev 快照、导入导出 */
+window.CET4 = window.CET4 || {};
+
+CET4.Store = (function () {
+  var TAX = CET4.TAX;
+  var KEY = 'cet4.state.v1';
+  var PREV = 'cet4.state.v1.prev';
+  var SAVE_DELAY = 300;
+
+  var _s = null;
+  var _lastSaved = null;
+  var _failed = false;
+  var _corrupt = false;
+  var _timer = null;
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  function build() {
+    var days = {};
+    CET4.PLAN.forEach(function (p) {
+      days[p.date] = {
+        module: p.module,
+        task: p.task,
+        plannedMinutes: p.plannedMinutes,
+        status: 'unset',
+        actualMinutes: null,
+        blocker: '',
+        adjustment: '',
+        steps: [],
+        updatedAt: null
+      };
+    });
+    var seed = CET4.SEED_RECORD;
+    if (seed && days[seed.date]) {
+      days[seed.date].status = seed.status;
+      days[seed.date].actualMinutes = seed.actualMinutes;
+      days[seed.date].blocker = seed.blocker;
+      days[seed.date].adjustment = seed.adjustment;
+      days[seed.date].updatedAt = seed.date;
+    }
+
+    var reviews = TAX.reviewDates.map(function (d, i) {
+      return {
+        id: 'r' + (i + 1),
+        reviewDate: d,
+        weekIndex: i + 1,
+        entries: TAX.reviewModules.map(function (m) {
+          return {
+            module: m, total: null, correct: null,
+            totalOverride: null, correctOverride: null,
+            wrongNos: '', errorType: '', nextAction: ''
+          };
+        }),
+        weekBlocker: '',
+        weekFocus: ''
+      };
+    });
+
+    return {
+      schemaVersion: 1,
+      savedAt: null,
+      settings: {
+        theme: 'dark',
+        examDate: TAX.exam.date,
+        examTime: TAX.exam.time,
+        targetScore: 425,
+        lastExportAt: null
+      },
+      days: days,
+      logs: { listening: [], reading: [], writing: [], translation: [], vocab: [], mock: [] },
+      memos: [],
+      _seq: 1,
+      reviews: reviews
+    };
+  }
+
+  function normalize(s) {
+    if (!s || typeof s !== 'object') return s;
+    s.settings = s.settings || {};
+    if (!s.settings.theme) s.settings.theme = 'dark';
+    if (s.settings.targetScore == null) s.settings.targetScore = 425;
+    s.logs = s.logs || {};
+    TAX.logModules.forEach(function (k) { if (!Array.isArray(s.logs[k])) s.logs[k] = []; });
+    if (!Array.isArray(s.memos)) s.memos = [];
+    if (!Array.isArray(s.reviews)) s.reviews = [];
+    if (typeof s._seq !== 'number') s._seq = 1;
+    var days = s.days || {};
+    CET4.PLAN.forEach(function (p) {
+      var d = days[p.date];
+      if (!d) {
+        days[p.date] = {
+          module: p.module, task: p.task, plannedMinutes: p.plannedMinutes,
+          status: 'unset', actualMinutes: null, blocker: '', adjustment: '',
+          steps: [], updatedAt: null
+        };
+      } else {
+        if (!d.status) d.status = 'unset';
+        if (!Array.isArray(d.steps)) d.steps = [];
+        if (d.blocker == null) d.blocker = '';
+        if (d.adjustment == null) d.adjustment = '';
+      }
+    });
+    s.days = days;
+    /* 复盘组补齐（老数据/被删） */
+    TAX.reviewDates.forEach(function (d, i) {
+      if (!s.reviews.some(function (r) { return r.weekIndex === i + 1; })) {
+        s.reviews.push({
+          id: 'r' + (i + 1), reviewDate: d, weekIndex: i + 1,
+          entries: TAX.reviewModules.map(function (m) {
+            return {
+              module: m, total: null, correct: null, totalOverride: null,
+              correctOverride: null, wrongNos: '', errorType: '', nextAction: ''
+            };
+          }),
+          weekBlocker: '', weekFocus: ''
+        });
+      }
+    });
+    s.reviews.sort(function (a, b) { return a.weekIndex - b.weekIndex; });
+    return s;
+  }
+
+  function available() {
+    try {
+      var k = '__cet4_probe__';
+      localStorage.setItem(k, '1');
+      localStorage.removeItem(k);
+      return true;
+    } catch (e) { return false; }
+  }
+
+  function readRaw() {
+    try { return localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+
+  function persist() {
+    if (_timer) { clearTimeout(_timer); _timer = null; }
+    if (!available()) { _failed = true; return false; }
+    try {
+      var next = JSON.stringify(_s);
+      if (next === _lastSaved) { _failed = false; return true; }
+      if (_lastSaved) {
+        try { localStorage.setItem(PREV, _lastSaved); } catch (e) { /* 快照失败不阻塞主写 */ }
+      }
+      localStorage.setItem(KEY, next);
+      _lastSaved = next;
+      _failed = false;
+      return true;
+    } catch (e) {
+      _failed = true;
+      return false;
+    }
+  }
+
+  function schedule() {
+    if (_timer) clearTimeout(_timer);
+    _timer = setTimeout(persist, SAVE_DELAY);
+  }
+
+  function nextId(prefix) {
+    _s._seq = (_s._seq || 1) + 1;
+    return prefix + '_' + _s._seq + '_' + Math.random().toString(36).slice(2, 6);
+  }
+
+  function init() {
+    var raw = readRaw();
+    if (raw) {
+      try {
+        var parsed = JSON.parse(raw);
+        if (parsed && parsed.days) {
+          _s = normalize(parsed);
+          _lastSaved = raw;
+        } else {
+          _corrupt = true;
+        }
+      } catch (e) {
+        _corrupt = true;
+      }
+    }
+    if (!_s) _s = normalize(build());
+    if (_corrupt) return _s;
+    if (readRaw() === null) persist();
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'hidden') flush();
+    });
+    window.addEventListener('pagehide', flush);
+    return _s;
+  }
+
+  function flush() { return persist(); }
+
+  function update(fn) {
+    if (!_s) return;
+    fn(_s);
+    _s.savedAt = new Date().toISOString();
+    schedule();
+  }
+
+  function exportPayload() {
+    return {
+      app: 'cet4-study',
+      schemaVersion: 1,
+      exportedAt: new Date().toISOString(),
+      state: _s
+    };
+  }
+
+  function exportText() { return JSON.stringify(exportPayload(), null, 2); }
+
+  function exportFilename() {
+    var d = new Date();
+    return 'CET4-backup-' + d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) +
+      '-' + pad(d.getHours()) + pad(d.getMinutes()) + '.json';
+  }
+
+  function importText(txt) {
+    var obj;
+    try { obj = JSON.parse(txt); } catch (e) { return { ok: false, error: '不是合法的 JSON 文件' }; }
+    if (!obj || obj.app !== 'cet4-study') return { ok: false, error: '文件不对：不是本应用的备份' };
+    if (obj.schemaVersion !== 1) return { ok: false, error: '版本不支持：需要 schemaVersion 1' };
+    if (!obj.state || !obj.state.days) return { ok: false, error: '内容缺失：找不到打卡数据' };
+    if (!Object.keys(obj.state.days).length) return { ok: false, error: '内容缺失：打卡数据为空' };
+    var next = normalize(obj.state);
+    var backup = _lastSaved;
+    _s = next;
+    _lastSaved = null;
+    if (!persist()) {
+      _s = normalize(JSON.parse(backup));
+      _lastSaved = backup;
+      return { ok: false, error: '写入失败：浏览器存储不可用' };
+    }
+    return { ok: true };
+  }
+
+  function restorePrev() {
+    var raw = null;
+    try { raw = localStorage.getItem(PREV); } catch (e) { raw = null; }
+    if (!raw) return { ok: false, error: '没有可恢复的上一份备份' };
+    var parsed;
+    try { parsed = JSON.parse(raw); } catch (e) { return { ok: false, error: '上一份备份已损坏' }; }
+    if (!parsed || !parsed.days) return { ok: false, error: '上一份备份内容缺失' };
+    _s = normalize(parsed);
+    _lastSaved = null;
+    persist();
+    return { ok: true };
+  }
+
+  function reset() {
+    _s = normalize(build());
+    _lastSaved = null;
+    persist();
+    return _s;
+  }
+
+  return {
+    KEY: KEY, PREV: PREV,
+    init: init, get: function () { return _s; },
+    update: update, flush: flush, schedule: schedule,
+    nextId: nextId,
+    available: available, isFailed: function () { return _failed; },
+    isCorrupt: function () { return _corrupt; },
+    exportText: exportText, exportFilename: exportFilename, importText: importText,
+    restorePrev: restorePrev, reset: reset,
+    markExported: function () {
+      _s.settings.lastExportAt = new Date().toISOString();
+      persist();
+    }
+  };
+})();
+
+</script>
+<script>
+/* src/core/derive.js */
+/* CET-4 备考台 · 派生计算（全部纯函数，tests/unit.html 覆盖） */
+window.CET4 = window.CET4 || {};
+
+CET4.D = (function () {
+  var TAX = CET4.TAX;
+  var _s = null;
+  var _today = null;
+
+  function setState(s) { _s = s; }
+  function getState() { return _s; }
+  function setToday(v) { _today = v; }
+  function resetToday() { _today = null; }
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function fmtDate(d) {
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+  }
+  function todayISO() { return _today || fmtDate(new Date()); }
+  function parseISO(s) {
+    var p = String(s).split('-');
+    return new Date(+p[0], +p[1] - 1, +p[2]);
+  }
+  function addDays(iso, n) {
+    var d = parseISO(iso);
+    d.setDate(d.getDate() + n);
+    return fmtDate(d);
+  }
+  function inRange(iso, r) { return iso >= r.start && iso <= r.end; }
+
+  function weekIndexOf(iso) {
+    for (var i = 0; i < TAX.weeks.length; i++) {
+      if (inRange(iso, TAX.weeks[i])) return TAX.weeks[i].idx;
+    }
+    return null;
+  }
+  function weekRange(idx) { return TAX.weeks[idx - 1]; }
+  function weekLabel(idx) {
+    var w = TAX.weeks[idx - 1];
+    return w ? w.label : '';
+  }
+  function currentWeek() {
+    var idx = weekIndexOf(todayISO());
+    if (idx) return idx;
+    return todayISO() < TAX.weeks[0].start ? 1 : TAX.weeks.length;
+  }
+  function weekdayOf(iso) {
+    return TAX.weekdays[parseISO(iso).getDay()];
+  }
+
+  /* 区间内“已到期”的日期（到今天为止，未来不计） */
+  function dueDays(r) {
+    var out = [];
+    if (!r) return out;
+    var t = todayISO();
+    var end = r.end < t ? r.end : t;
+    if (end < r.start) return out;
+    for (var d = r.start; d <= end; d = addDays(d, 1)) out.push(d);
+    return out;
+  }
+
+  function day(iso) { return _s && _s.days ? _s.days[iso] : null; }
+
+  function completion(r) {
+    var days = dueDays(r), done = 0;
+    for (var i = 0; i < days.length; i++) {
+      var d = day(days[i]);
+      if (d && d.status === 'done') done++;
+    }
+    return { done: done, due: days.length, rate: days.length ? done / days.length : null };
+  }
+
+  function totalProgress() {
+    var r = { start: TAX.weeks[0].start, end: TAX.weeks[TAX.weeks.length - 1].end };
+    var c = completion(r);
+    return { done: c.done, due: c.due, rate: c.rate, total: 48 };
+  }
+
+  function moduleMinutes(module, r) {
+    var days = dueDays(r), sum = 0;
+    for (var i = 0; i < days.length; i++) {
+      var d = day(days[i]);
+      if (d && d.module === module && d.status === 'done') sum += (+d.actualMinutes || 0);
+    }
+    return sum;
+  }
+
+  function logsOf(key) {
+    var arr = (_s && _s.logs && _s.logs[key]) || [];
+    return arr.slice().sort(function (a, b) {
+      if (a.date === b.date) return (a.id || '') < (b.id || '') ? 1 : -1;
+      return a.date < b.date ? 1 : -1;
+    });
+  }
+  function logsInRange(key, r) {
+    return logsOf(key).filter(function (x) { return inRange(x.date, r); });
+  }
+
+  /* 该周该模块日志里的题数与正确数合计（写作/翻译/听力无题数，返回 0） */
+  function autoCounts(weekIdx, module) {
+    var r = weekRange(weekIdx);
+    if (!r) return { total: 0, correct: 0 };
+    if (module === '阅读') {
+      var t = 0, c = 0;
+      logsInRange('reading', r).forEach(function (x) {
+        t += (+x.total || 0);
+        c += (+x.correct || 0);
+      });
+      return { total: t, correct: c };
+    }
+    return { total: 0, correct: 0 };
+  }
+
+  function reviewOf(weekIdx) {
+    var rs = (_s && _s.reviews) || [];
+    for (var i = 0; i < rs.length; i++) if (rs[i].weekIndex === weekIdx) return rs[i];
+    return null;
+  }
+
+  function entryOf(weekIdx, module) {
+    var rev = reviewOf(weekIdx);
+    if (!rev) return null;
+    for (var i = 0; i < rev.entries.length; i++) {
+      if (rev.entries[i].module === module) return rev.entries[i];
+    }
+    return null;
+  }
+
+  function moduleAccuracy(weekIdx, module) {
+    var e = entryOf(weekIdx, module);
+    var auto = autoCounts(weekIdx, module);
+    var hasT = e && e.totalOverride !== null && e.totalOverride !== undefined;
+    var hasC = e && e.correctOverride !== null && e.correctOverride !== undefined;
+    var total = hasT ? +e.totalOverride : auto.total;
+    var correct = hasC ? +e.correctOverride : auto.correct;
+    var manual = !!(hasT || hasC);
+    return {
+      total: total, correct: correct,
+      rate: total > 0 ? correct / total : null,
+      manual: manual
+    };
+  }
+
+  function mockTrend() {
+    return logsOf('mock')
+      .filter(function (x) { return x.estimate !== null && x.estimate !== undefined && x.estimate !== ''; })
+      .sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; })
+      .map(function (x) {
+        return {
+          date: x.date, score: +x.estimate,
+          listening: +x.listeningCorrect || 0, reading: +x.readingCorrect || 0
+        };
+      });
+  }
+
+  function errorDist(scope) {
+    var map = {}, order = [];
+    var rs = (_s && _s.reviews) || [];
+    rs.forEach(function (rev) {
+      rev.entries.forEach(function (e) {
+        if (!e.errorType) return;
+        if (scope && scope !== 'all' && e.module !== scope) return;
+        if (!map[e.errorType]) { map[e.errorType] = 0; order.push(e.errorType); }
+        map[e.errorType]++;
+      });
+    });
+    return order.map(function (k) { return { type: k, count: map[k] }; });
+  }
+
+  function listProgress() {
+    var seen = {};
+    logsOf('vocab').forEach(function (x) { seen[x.list] = true; });
+    var n = 0;
+    for (var i = 1; i <= 6; i++) if (seen[i]) n++;
+    return { done: n, total: 6 };
+  }
+
+  function countdown() {
+    var diff = Math.round((parseISO(TAX.exam.date) - parseISO(todayISO())) / 86400000);
+    if (diff > 0) return { days: diff, phase: 'before' };
+    if (diff === 0) return { days: 0, phase: 'exam' };
+    return { days: -diff, phase: 'after' };
+  }
+
+  function isOvertime(d) {
+    return !!(d && +d.actualMinutes > 0 && +d.plannedMinutes > 0 &&
+      +d.actualMinutes > +d.plannedMinutes * 1.5);
+  }
+
+  function pct(rate) {
+    if (rate === null || rate === undefined || isNaN(rate)) return '—';
+    return (Math.round(rate * 1000) / 10).toFixed(1) + '%';
+  }
+
+  /* 首页模块摘要卡：一个主数字 + 一行说明 */
+  function aggregateModule(key) {
+    var w = currentWeek(), r = weekRange(w);
+    if (key === 'listening') {
+      var ls = logsInRange('listening', r);
+      var last = ls[0];
+      return {
+        value: ls.length ? ls.length + ' 次' : '还没开始',
+        caption: last ? '最近倍速 ' + (last.speed || '1.0') + '×' : '本周精听次数'
+      };
+    }
+    if (key === 'reading') {
+      var rs = logsInRange('reading', r), t = 0, c = 0;
+      rs.forEach(function (x) { t += (+x.total || 0); c += (+x.correct || 0); });
+      return {
+        value: t > 0 ? pct(c / t) : '还没开始',
+        caption: rs[0] ? '最近：' + rs[0].type : '本周正确率'
+      };
+    }
+    if (key === 'writing') {
+      var ws = logsOf('writing'), sno = 0;
+      ws.forEach(function (x) { sno += (x.sentences || []).length; });
+      return {
+        value: ws.length ? ws.length + ' 篇' : '还没开始',
+        caption: '句式库 ' + sno + ' 条'
+      };
+    }
+    if (key === 'translation') {
+      var ts = logsOf('translation'), col = 0;
+      ts.forEach(function (x) { col += (x.collocations || []).length; });
+      return {
+        value: ts.length ? ts.length + ' 段' : '还没开始',
+        caption: '搭配 ' + col + ' 个'
+      };
+    }
+    if (key === 'vocab') {
+      var lp = listProgress(), wrong = 0;
+      logsOf('vocab').forEach(function (x) { wrong += (x.wrongWords || []).length; });
+      return { value: lp.done + '/' + lp.total, caption: '错词 ' + wrong + ' 个' };
+    }
+    if (key === 'mock') {
+      var tr = mockTrend();
+      if (!tr.length) return { value: '还没开始', caption: '本周六模考' };
+      var lastS = tr[tr.length - 1];
+      var delta = tr.length > 1 ? lastS.score - tr[tr.length - 2].score : 0;
+      return {
+        value: String(lastS.score),
+        caption: tr.length > 1 ? '较上次 ' + (delta >= 0 ? '+' : '') + delta : '首次模考'
+      };
+    }
+    /* review */
+    var rev = reviewOf(w);
+    var comp = completion(weekRange(w));
+    return {
+      value: comp.due ? pct(comp.rate) : '还没开始',
+      caption: rev && rev.weekBlocker ? rev.weekBlocker : '本周完成率'
+    };
+  }
+
+  return {
+    setState: setState, getState: getState, setToday: setToday, resetToday: resetToday,
+    todayISO: todayISO, parseISO: parseISO, addDays: addDays, fmtDate: fmtDate,
+    weekIndexOf: weekIndexOf, weekRange: weekRange, weekLabel: weekLabel,
+    currentWeek: currentWeek, weekdayOf: weekdayOf, inRange: inRange,
+    dueDays: dueDays, day: day, completion: completion, totalProgress: totalProgress,
+    moduleMinutes: moduleMinutes, logsOf: logsOf, logsInRange: logsInRange,
+    autoCounts: autoCounts, reviewOf: reviewOf, entryOf: entryOf,
+    moduleAccuracy: moduleAccuracy, mockTrend: mockTrend, errorDist: errorDist,
+    listProgress: listProgress, countdown: countdown, isOvertime: isOvertime,
+    pct: pct, aggregateModule: aggregateModule
+  };
+})();
+
+</script>
+<script>
+/* src/core/router.js */
+/* CET-4 备考台 · hash 路由：home / today / data / m/<key> */
+window.CET4 = window.CET4 || {};
+
+CET4.Router = (function () {
+  var handler = null;
+
+  function parse() {
+    var raw = (location.hash || '').replace(/^#\/?/, '');
+    var q = raw.indexOf('?');
+    if (q >= 0) raw = raw.slice(0, q);
+    var parts = raw.split('/').filter(function (s) { return s.length > 0; });
+    var page = parts[0] || 'home';
+    return { page: page, arg: parts[1] || null, raw: raw };
+  }
+
+  function emit() { if (handler) handler(parse()); }
+
+  function start(fn) {
+    handler = fn;
+    window.addEventListener('hashchange', emit);
+    emit();
+  }
+
+  function go(hash) {
+    if (location.hash === hash) { emit(); return; }
+    location.hash = hash;
+  }
+
+  return { start: start, go: go, parse: parse, emit: emit };
+})();
+
+</script>
+<script>
+/* src/core/actions.js */
+/* CET-4 备考台 · 共享动作（打卡、备忘、导入导出） */
+window.CET4 = window.CET4 || {};
+
+CET4.A = (function () {
+  function refresh() { CET4.App.refresh(); }
+  function D() { return CET4.D; }
+
+  function setStatus(iso, status) {
+    CET4.Store.update(function (s) {
+      var d = s.days[iso];
+      if (!d) return;
+      d.status = status;
+      d.updatedAt = new Date().toISOString();
+    });
+    refresh();
+    if (status === 'done') CET4.UI.toast('已打卡：完成', 'ok');
+    else if (status === 'missed') CET4.UI.toast('已标记：未完成', 'warn');
+  }
+
+  function addMemo(text) {
+    var t = String(text || '').trim();
+    if (!t) return false;
+    CET4.Store.update(function (s) {
+      s.memos.unshift({
+        id: CET4.Store.nextId('memo'),
+        text: t.slice(0, 80),
+        done: false,
+        createdAt: new Date().toISOString()
+      });
+    });
+    refresh();
+    return true;
+  }
+
+  function toggleMemo(id) {
+    CET4.Store.update(function (s) {
+      for (var i = 0; i < s.memos.length; i++) {
+        if (s.memos[i].id === id) { s.memos[i].done = !s.memos[i].done; return; }
+      }
+    });
+    refresh();
+  }
+
+  function delMemo(id) {
+    CET4.Store.update(function (s) {
+      s.memos = s.memos.filter(function (m) { return m.id !== id; });
+    });
+    refresh();
+  }
+
+  function exportNow() {
+    CET4.Store.flush();
+    var txt = CET4.Store.exportText();
+    var name = CET4.Store.exportFilename();
+    var blob = new Blob([txt], { type: 'application/json;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+    CET4.Store.markExported();
+    CET4.UI.toast('已导出 ' + name, 'ok');
+    refresh();
+  }
+
+  function importPick() {
+    var input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json,application/json';
+    input.style.display = 'none';
+    document.body.appendChild(input);
+    input.addEventListener('change', function () {
+      var f = input.files && input.files[0];
+      if (!f) { cleanup(); return; }
+      var reader = new FileReader();
+      reader.onload = function () {
+        var r = CET4.Store.importText(String(reader.result || ''));
+        cleanup();
+        if (r.ok) { CET4.UI.toast('导入成功，已替换全部数据', 'ok'); CET4.App.fullRefresh(); }
+        else { CET4.UI.toast(r.error, 'bad'); }
+      };
+      reader.onerror = function () { cleanup(); CET4.UI.toast('读取文件失败', 'bad'); };
+      reader.readAsText(f, 'utf-8');
+      function cleanup() { if (input.parentNode) input.parentNode.removeChild(input); }
+    });
+    input.click();
+  }
+
+  return {
+    setStatus: setStatus,
+    addMemo: addMemo, toggleMemo: toggleMemo, delMemo: delMemo,
+    exportNow: exportNow, importPick: importPick
+  };
+})();
+
+</script>
+<script>
+/* src/views/home.js */
+/* CET-4 备考台 · 首页总览 */
+window.CET4 = window.CET4 || {};
+CET4.Views = CET4.Views || {};
+
+CET4.Views.home = function (main) {
+  var h = CET4.UI.h, U = CET4.UI, D = CET4.D, S = CET4.Store.get();
+  var today = D.todayISO();
+  var w = D.currentWeek();
+  var wr = D.weekRange(w);
+
+  U.clear(main);
+  var page = h('div', { class: 'page' });
+
+  /* ---------- 1 顶部状态 ---------- */
+  var cd = D.countdown();
+  var planIdx = CET4.PLAN.findIndex(function (p) { return p.date === today; });
+  var cdLabel, cdBig;
+  if (cd.phase === 'before') { cdLabel = '距考试'; cdBig = cd.days + ' 天'; }
+  else if (cd.phase === 'exam') { cdLabel = '考试日'; cdBig = '今天'; }
+  else { cdLabel = '已考完'; cdBig = cd.days + ' 天'; }
+
+  page.appendChild(h('section', { class: 'card statusbar' },
+    h('div', { class: 'sb-num' }, h('span', { class: 'sb-label', text: cdLabel }), h('b', { text: cdBig })),
+    h('div', { class: 'sb-meta' },
+      h('div', { text: U.fmtClock(today) + ' ' + D.weekdayOf(today) + ' · ' + D.weekLabel(w) }),
+      h('div', { class: 'muted', text: planIdx >= 0 ? ('计划第 ' + (planIdx + 1) + ' / 48 天') : '不在 48 天计划区间内' })
+    ),
+    h('div', { class: 'sb-goal' },
+      h('div', { class: 'muted', text: '目标分' }),
+      h('b', { text: String(S.settings.targetScore || 425) })
+    )
+  ));
+
+  if (CET4.Store.isCorrupt()) {
+    page.appendChild(h('div', { class: 'banner-warn' },
+      '检测到本地数据损坏，已用初始数据打开。可在「数据 · 设置」里从上一份备份恢复。'));
+  }
+
+  /* ---------- 2 今日主任务 ---------- */
+  var tday = D.day(today);
+  page.appendChild(h('h2', { class: 'sec-h' }, '今日计划'));
+  if (!tday) {
+    page.appendChild(h('section', { class: 'card empty' },
+      h('p', { text: '今天不在 48 天计划里。' }),
+      h('a', { class: 'btn btn-ghost', href: '#/today', text: '查看全部计划' })
+    ));
+  } else {
+    var statusText = tday.status === 'done' ? '已完成'
+      : tday.status === 'missed' ? '未完成' : '未打卡';
+    var badgeCls = tday.status === 'done' ? 'badge badge-ok'
+      : tday.status === 'missed' ? 'badge badge-bad' : 'badge';
+    page.appendChild(h('section', {
+      class: 'card today-card' + (D.isOvertime(tday) ? ' ot' : ''),
+      style: { '--mc': CET4.TAX.colors[tday.module] || '#5b8cff' }
+    },
+      h('div', { class: 'row between' },
+        h('span', { class: 'pill pill-m', text: tday.module }),
+        h('span', { class: badgeCls, text: statusText })
+      ),
+      h('p', { class: 'task-txt', text: tday.task }),
+      h('div', { class: 'muted' },
+        '计划 ' + U.fmtMinutes(tday.plannedMinutes)
+        + (tday.actualMinutes ? ' · 实际 ' + U.fmtMinutes(tday.actualMinutes) : '')
+        + (D.isOvertime(tday) ? ' · 已超 1.5 倍' : '')
+      ),
+      h('div', { class: 'row gap mt' },
+        h('button', {
+          class: 'btn btn-ok', text: '完成',
+          onclick: function () { CET4.A.setStatus(today, 'done'); }
+        }),
+        h('button', {
+          class: 'btn btn-ghost', text: '未完成',
+          onclick: function () { CET4.A.setStatus(today, 'missed'); }
+        }),
+        h('a', { class: 'btn btn-ghost', href: '#/today', text: '写详情' })
+      )
+    ));
+  }
+
+  /* ---------- 3 快速备忘 ---------- */
+  var memos = S.memos || [];
+  var open = memos.filter(function (m) { return !m.done; });
+  var doneMemos = memos.filter(function (m) { return m.done; });
+
+  var memoInput = h('input', {
+    class: 'input', type: 'text', maxlength: '80',
+    placeholder: '随手记一句（回车添加）'
+  });
+  var memoForm = h('form', {
+    class: 'row gap',
+    onsubmit: function (e) {
+      e.preventDefault();
+      if (CET4.A.addMemo(memoInput.value)) memoInput.value = '';
+    }
+  }, memoInput, h('button', { class: 'btn btn-primary', type: 'submit', text: '添加' }));
+
+  var memoList = h('ul', { class: 'memo-list' });
+  if (!open.length) {
+    memoList.appendChild(h('li', { class: 'empty-line', text: '没有待办备忘' }));
+  }
+  open.slice(0, 8).forEach(function (m) {
+    memoList.appendChild(h('li', { class: 'memo' },
+      h('input', {
+        type: 'checkbox', class: 'cb',
+        onchange: function () { CET4.A.toggleMemo(m.id); }
+      }),
+      h('span', { class: 'memo-txt', text: m.text }),
+      h('button', {
+        class: 'icon-btn', title: '删除', text: '×',
+        onclick: function () { CET4.A.delMemo(m.id); }
+      })
+    ));
+  });
+
+  page.appendChild(h('h2', { class: 'sec-h' }, '快速备忘',
+    h('span', { class: 'muted sub', text: open.length ? open.length + ' 条待办' : '' })));
+  page.appendChild(h('section', { class: 'card' },
+    memoForm, memoList,
+    open.length > 8 ? h('div', { class: 'muted', text: '还有 ' + (open.length - 8) + ' 条，去「数据」页查看' }) : null,
+    doneMemos.length ? h('details', { class: 'memo-done' },
+      h('summary', { text: '已完成 ' + doneMemos.length + ' 条' }),
+      h('ul', { class: 'memo-list' },
+        doneMemos.slice(0, 20).map(function (m) {
+          return h('li', { class: 'memo done' },
+            h('input', {
+              type: 'checkbox', class: 'cb', checked: true,
+              onchange: function () { CET4.A.toggleMemo(m.id); }
+            }),
+            h('span', { class: 'memo-txt', text: m.text }),
+            h('button', {
+              class: 'icon-btn', title: '删除', text: '×',
+              onclick: function () { CET4.A.delMemo(m.id); }
+            })
+          );
+        })
+      )
+    ) : null
+  ));
+
+  /* ---------- 4 本周七天 ---------- */
+  var strip = h('div', { class: 'weekstrip' });
+  D.dueDays(wr).forEach(function (iso) { strip.appendChild(weekCell(iso)); });
+  /* 未来几天也给格子，只是不显示状态 */
+  for (var i = 0; i < 7; i++) {
+    var iso = D.addDays(wr.start, i);
+    if (iso > today) strip.appendChild(weekCell(iso));
+  }
+
+  page.appendChild(h('div', { class: 'row between sec-h' },
+    h('h2', { text: '本周 · ' + D.weekLabel(w) }),
+    h('a', { class: 'link', href: '#/today/week', text: '本周任务' })
+  ));
+  var comp = D.completion(wr);
+  page.appendChild(h('section', { class: 'card' },
+    h('div', { class: 'row between' },
+      h('span', { class: 'muted', text: '本周完成率' }),
+      h('b', { text: comp.due ? D.pct(comp.rate) : '—' })
+    ),
+    h('div', { class: 'bar' },
+      h('div', { class: 'bar-fill', style: { width: (comp.rate ? comp.rate * 100 : 0) + '%' } })
+    ),
+    h('div', { class: 'muted', text: comp.done + ' / ' + comp.due + ' 天已完成（未来天数不计入分母）' }),
+    strip
+  ));
+
+  /* ---------- 5 模块摘要 ---------- */
+  var grid = h('div', { class: 'mgrid' });
+  CET4.TAX.logModules.forEach(function (key) {
+    var a = D.aggregateModule(key);
+    var title = CET4.TAX.logTitles[key];
+    grid.appendChild(h('a', {
+      class: 'mcard', href: '#/m/' + key,
+      style: { '--mc': CET4.TAX.colors[title] }
+    },
+      h('span', { class: 'mname', text: title }),
+      h('b', { class: 'mval', text: a.value }),
+      h('span', { class: 'mcap', text: a.caption })
+    ));
+  });
+  var rev = D.aggregateModule('review');
+  grid.appendChild(h('a', {
+    class: 'mcard', href: '#/data/review',
+    style: { '--mc': CET4.TAX.colors['休息'] }
+  },
+    h('span', { class: 'mname', text: '周复盘' }),
+    h('b', { class: 'mval', text: rev.value }),
+    h('span', { class: 'mcap', text: rev.caption })
+  ));
+
+  page.appendChild(h('h2', { class: 'sec-h' }, '各模块摘要'));
+  page.appendChild(grid);
+
+  /* ---------- 6 保存状态 ---------- */
+  var saveBad = CET4.Store.isFailed() || !CET4.Store.available();
+  page.appendChild(h('section', { class: 'card saves' },
+    h('div', { class: 'row between' },
+      h('span', { class: 'muted', text: '本地保存' }),
+      h('span', { class: saveBad ? 'bad' : 'ok', text: saveBad ? '不可用（可能开了无痕模式）' : '正常' })
+    ),
+    h('div', { class: 'row between' },
+      h('span', { class: 'muted', text: '上次自动保存' }),
+      h('span', { text: U.fmtStamp(CET4.Store.get().savedAt) })
+    ),
+    h('div', { class: 'row between' },
+      h('span', { class: 'muted', text: '上次导出备份' }),
+      h('span', { text: U.fmtStamp(S.settings.lastExportAt) })
+    ),
+    h('div', { class: 'row gap mt' },
+      h('button', {
+        class: 'btn btn-ghost', text: '立即保存',
+        onclick: function () {
+          var ok = CET4.Store.flush();
+          U.toast(ok ? '已保存到本机浏览器' : '保存失败：存储不可用', ok ? 'ok' : 'bad');
+          CET4.App.refresh();
+        }
+      }),
+      h('button', { class: 'btn btn-primary', text: '导出备份', onclick: CET4.A.exportNow }),
+      h('a', { class: 'btn btn-ghost', href: '#/data/settings', text: '设置' })
+    )
+  ));
+
+  main.appendChild(page);
+
+  function weekCell(iso) {
+    var d = D.day(iso);
+    var isToday = iso === today;
+    var st = !d ? 'none' : d.status;
+    var cls = 'wcell' + (isToday ? ' is-today' : '') + ' st-' + st;
+    return h('a', {
+      class: cls, href: '#/today',
+      style: { '--mc': d ? (CET4.TAX.colors[d.module] || '#5b8cff') : '#3a4354' },
+      title: d ? d.module + ' · ' + d.task : '无计划'
+    },
+      h('span', { class: 'wd', text: D.weekdayOf(iso).replace('周', '') }),
+      h('span', { class: 'wdate', text: String(+iso.slice(8)) }),
+      h('span', { class: 'wdot' })
+    );
+  }
+};
+
+</script>
+<script>
+/* src/views/today.js */
+﻿/* CET-4 备考台 · 今日计划（今天 / 本周 / 全部） */
+window.CET4 = window.CET4 || {};
+CET4.Views = CET4.Views || {};
+
+/* 展开中的日期放在视图函数外，重渲染后仍保留 */
+var _openIso = null;
+
+CET4.Views.today = function (main, arg) {
+  var h = CET4.UI.h, U = CET4.UI, D = CET4.D;
+  var mode = arg === 'week' ? 'week' : arg === 'all' ? 'all' : 'today';
+  var today = D.todayISO();
+  var cards = {};
+  var openIso = _openIso;
+  function setOpen(v) { openIso = v; _openIso = v; }
+
+  var MODKEY = {
+    '听力': 'listening', '阅读': 'reading', '写作': 'writing',
+    '翻译': 'translation', '词汇': 'vocab', '模考': 'mock'
+  };
+
+  U.clear(main);
+  var page = h('div', { class: 'page' });
+
+  page.appendChild(h('div', { class: 'seg' },
+    segLink('今天', '#/today', mode === 'today'),
+    segLink('本周', '#/today/week', mode === 'week'),
+    segLink('全部', '#/today/all', mode === 'all')
+  ));
+
+  if (mode === 'today') {
+    var d0 = D.day(today);
+    var cd = D.countdown();
+    page.appendChild(h('p', { class: 'muted', text:
+      '今天 ' + U.fmtClock(today) + ' ' + D.weekdayOf(today) +
+      (D.weekIndexOf(today) ? ' · ' + D.weekLabel(D.weekIndexOf(today)) : '') +
+      (cd.phase === 'after' ? ' · 考试已结束' : ' · 距离考试 ' + cd.days + ' 天') }));
+    if (!d0) {
+      page.appendChild(h('section', { class: 'card empty' },
+        h('p', { text: '今天不在 48 天计划区间内。' }),
+        h('a', { class: 'btn btn-ghost', href: '#/today/all', text: '查看全部 48 天' })
+      ));
+    } else {
+      var card = renderDay(today);
+      cards[today] = card;
+      page.appendChild(card);
+      if (MODKEY[d0.module]) {
+        page.appendChild(h('a', {
+          class: 'btn btn-ghost wide', href: '#/m/' + MODKEY[d0.module],
+          text: '记一条「' + d0.module + '」细节 →'
+        }));
+      }
+    }
+  } else {
+    var weeks = mode === 'week' ? [D.currentWeek()] : CET4.TAX.weeks.map(function (x) { return x.idx; });
+    weeks.forEach(function (wi) {
+      var w = D.weekRange(wi);
+      var comp = D.completion(w);
+      page.appendChild(h('div', { class: 'row between sec-h' },
+        h('h2', { text: D.weekLabel(wi) + ' · ' + U.fmtClock(w.start) + '–' + U.fmtClock(w.end) }),
+        h('span', { class: 'muted', text: comp.due ? D.pct(comp.rate) : '—' })
+      ));
+      var list = h('div', { class: 'day-list' });
+      for (var i = 0; i < 7; i++) {
+        var iso = D.addDays(w.start, i);
+        if (iso < w.start || iso > w.end) continue;
+        var node;
+        if (openIso === iso) { node = renderDay(iso); cards[iso] = node; }
+        else { node = renderCompact(iso); }
+        list.appendChild(node);
+      }
+      page.appendChild(list);
+    });
+  }
+
+  main.appendChild(page);
+
+  /* ---------------- 组件 ---------------- */
+
+  function segLink(label, href, active) {
+    return h('a', { class: 'seg-item' + (active ? ' active' : ''), href: href, text: label });
+  }
+
+  function statusLabel(st) {
+    return st === 'done' ? '已完成' : st === 'missed' ? '未完成' : '未打卡';
+  }
+  function statusCls(st) {
+    return st === 'done' ? 'badge badge-ok' : st === 'missed' ? 'badge badge-bad' : 'badge';
+  }
+
+  function renderCompact(iso) {
+    var d = D.day(iso);
+    return h('button', {
+      class: 'day-compact' + (iso === today ? ' is-today' : '') +
+        (D.isOvertime(d) ? ' ot' : '') + (d.status === 'missed' ? ' missed' : ''),
+      style: { '--mc': CET4.TAX.colors[d.module] || '#5b8cff' },
+      onclick: function () { setOpen(iso); CET4.App.refresh(); }
+    },
+      h('span', { class: 'dc-date', text: U.fmtClock(iso) + ' ' + D.weekdayOf(iso).replace('周', '') }),
+      h('span', { class: 'pill pill-m', text: d.module }),
+      h('span', { class: 'dc-task', text: d.task }),
+      h('span', { class: 'dc-min', text: (d.status === 'done' && d.actualMinutes) ? U.fmtMinutes(d.actualMinutes) : U.fmtMinutes(d.plannedMinutes) }),
+      h('span', { class: statusCls(d.status), text: statusLabel(d.status) })
+    );
+  }
+
+  function renderDay(iso) {
+    var d = D.day(iso);
+    if (!d) return h('div');
+    var card = h('article', {
+      class: 'card day' + (D.isOvertime(d) ? ' ot' : '') + (d.status === 'missed' ? ' missed' : '') +
+        (iso === today ? ' is-today' : ''),
+      style: { '--mc': CET4.TAX.colors[d.module] || '#5b8cff' }
+    });
+
+    card.appendChild(h('div', { class: 'row between' },
+      h('div', { class: 'row gap8 wrap' },
+        h('span', { class: 'day-date', text: U.fmtClock(iso) }),
+        h('span', { class: 'muted', text: D.weekdayOf(iso) }),
+        h('span', { class: 'pill pill-m', text: d.module }),
+        D.isOvertime(d) ? h('span', { class: 'badge badge-warn', text: '超时 1.5×' }) : null
+      ),
+      (iso !== today && openIso === iso)
+        ? h('button', { class: 'icon-btn txt', text: '收起', onclick: function () { setOpen(null); CET4.App.refresh(); } })
+        : null
+    ));
+
+    /* 状态 */
+    var stRow = h('div', { class: 'status-row' });
+    [['done', '完成'], ['missed', '未完成'], ['unset', '清除']].forEach(function (pair) {
+      stRow.appendChild(h('button', {
+        class: 'sbtn' + (d.status === pair[0] ? ' on' : '') +
+          (pair[0] === 'done' ? ' sbtn-ok' : pair[0] === 'missed' ? ' sbtn-bad' : ''),
+        text: pair[1],
+        onclick: function () { setStatus(iso, pair[0]); }
+      }));
+    });
+    card.appendChild(stRow);
+
+    /* 任务文本 */
+    var taskInput = h('textarea', {
+      class: 'input area-task', rows: '2', placeholder: '今天要做什么',
+      oninput: function () { setText(iso, 'task', taskInput.value); }
+    });
+    taskInput.value = d.task || '';
+    card.appendChild(h('div', { class: 'field' },
+      h('label', { class: 'label', text: '计划任务（可改）' }), taskInput));
+
+    /* 时长 */
+    var planNum = h('input', {
+      class: 'input num', type: 'number', inputmode: 'numeric', min: '0', max: '600',
+      oninput: function () { setNum(iso, 'plannedMinutes', planNum.value); refreshOt(); }
+    });
+    planNum.value = d.plannedMinutes == null ? '' : d.plannedMinutes;
+
+    var actNum = h('input', {
+      class: 'input num', type: 'number', inputmode: 'numeric', min: '0', max: '600',
+      oninput: function () { setNum(iso, 'actualMinutes', actNum.value); refreshOt(); }
+    });
+    actNum.value = d.actualMinutes == null ? '' : d.actualMinutes;
+
+    card.appendChild(h('div', { class: 'grid2' },
+      h('div', { class: 'field' },
+        h('label', { class: 'label', text: '计划时长（分钟）' }), planNum),
+      h('div', { class: 'field' },
+        h('label', { class: 'label', text: '实际时长（分钟）' }), actNum)
+    ));
+
+    /* 卡点 / 调整 */
+    card.appendChild(labeledText(iso, 'blocker', 60, '例如：注意力不集中；信息标注缺失', '今日最大卡点'));
+    card.appendChild(labeledText(iso, 'adjustment', 60, '例如：将细节信息标注清楚+与问题快速对应', '明日调整'));
+
+    /* 小步骤 */
+    var steps = h('div', { class: 'steps' });
+    if (!d.steps.length) {
+      steps.appendChild(h('div', { class: 'empty-line', text: '把它拆成 1–3 个小步骤' }));
+    }
+    d.steps.forEach(function (st) {
+      var row = h('div', { class: 'step' + (st.done ? ' done' : '') });
+      row.appendChild(h('input', {
+        type: 'checkbox', class: 'cb', checked: st.done ? true : null,
+        onchange: function () {
+          CET4.Store.update(function (s) {
+            var arr = s.days[iso].steps;
+            for (var i = 0; i < arr.length; i++) if (arr[i].id === st.id) arr[i].done = !arr[i].done;
+          });
+          row.classList.toggle('done');
+        }
+      }));
+      var si = h('input', {
+        class: 'input step-input', type: 'text', maxlength: '60', placeholder: '小步骤',
+        oninput: function () {
+          var v = si.value;
+          CET4.Store.update(function (s) {
+            var arr = s.days[iso].steps;
+            for (var i = 0; i < arr.length; i++) if (arr[i].id === st.id) arr[i].text = v;
+          });
+        }
+      });
+      si.value = st.text || '';
+      row.appendChild(si);
+      row.appendChild(h('button', {
+        class: 'icon-btn', text: '×', title: '删除步骤',
+        onclick: function () {
+          CET4.Store.update(function (s) {
+            s.days[iso].steps = s.days[iso].steps.filter(function (x) { return x.id !== st.id; });
+          });
+          replace(iso);
+        }
+      }));
+      steps.appendChild(row);
+    });
+
+    card.appendChild(h('div', { class: 'field' },
+      h('label', { class: 'label', text: '小步骤' }),
+      steps,
+      h('button', {
+        class: 'btn btn-ghost sm', text: '+ 加一步',
+        onclick: function () {
+          if (D.day(iso).steps.length >= 8) { U.toast('最多 8 步', 'warn'); return; }
+          CET4.Store.update(function (s) {
+            s.days[iso].steps.push({ id: CET4.Store.nextId('st'), text: '', done: false });
+          });
+          replace(iso);
+        }
+      })
+    ));
+
+    card.appendChild(h('div', { class: 'muted foot', text: '最后修改：' + (d.updatedAt ? U.fmtStamp(d.updatedAt) : '未修改') }));
+
+    function refreshOt() {
+      card.classList.toggle('ot', D.isOvertime(D.day(iso)));
+    }
+
+    return card;
+  }
+
+  /* 就地替换单张卡，保留其余卡片与滚动位置 */
+  function replace(iso) {
+    var old = cards[iso];
+    var fresh = renderDay(iso);
+    cards[iso] = fresh;
+    if (old && old.parentNode) old.parentNode.replaceChild(fresh, old);
+    else CET4.App.refresh();
+  }
+
+  function labeledText(iso, key, max, ph, labelText) {
+    var counter = h('span', { class: 'counter', text: (D.day(iso)[key] || '').length + '/' + max });
+    var input = h('input', {
+      class: 'input', type: 'text', maxlength: max, placeholder: ph,
+      oninput: function () {
+        var v = input.value;
+        setText(iso, key, v);
+        counter.textContent = v.length + '/' + max;
+      }
+    });
+    input.value = D.day(iso)[key] || '';
+    return h('div', { class: 'field' },
+      h('label', { class: 'label' }, labelText, counter), input);
+  }
+
+  function setText(iso, key, v) {
+    CET4.Store.update(function (s) {
+      s.days[iso][key] = v;
+      s.days[iso].updatedAt = new Date().toISOString();
+    });
+  }
+
+  function setNum(iso, key, v) {
+    CET4.Store.update(function (s) {
+      s.days[iso][key] = v === '' ? null : Math.max(0, Math.round(+v));
+      s.days[iso].updatedAt = new Date().toISOString();
+    });
+  }
+
+  function setStatus(iso, status) {
+    CET4.Store.update(function (s) {
+      s.days[iso].status = status;
+      s.days[iso].updatedAt = new Date().toISOString();
+    });
+    replace(iso);
+    U.toast(status === 'done' ? '已打卡：完成' : status === 'missed' ? '已标记：未完成' : '已清除打卡',
+      status === 'missed' ? 'warn' : 'ok');
+  }
+};
+
+</script>
+<script>
+/* src/views/modules.js */
+/* CET-4 备考台 · 六个模块的专属记录页 */
+window.CET4 = window.CET4 || {};
+CET4.Views = CET4.Views || {};
+
+(function () {
+  var U = CET4.UI;
+  var h = U.h;
+
+  function rateStr(c, t) {
+    if (!t) return '—';
+    return CET4.D.pct(c / t);
+  }
+
+  var SPECS = {
+    listening: {
+      title: '听力', accent: '#5b8cff',
+      hint: '记什么：材料类型 / 精听方式 / 倍速 / 信号词 / 错题重听数',
+      fields: [
+        { key: 'date', label: '日期', type: 'date', required: true },
+        { key: 'material', label: '材料类型', type: 'select', options: CET4.TAX.listeningMaterials, required: true },
+        { key: 'methods', label: '精听方式', type: 'checks', options: CET4.TAX.listeningMethods, required: true },
+        { key: 'speed', label: '倍速', type: 'select', options: ['1.0', '1.25', '1.5'], def: '1.0' },
+        { key: 'signalWords', label: '信号词', type: 'tags', placeholder: 'but，however，so', hint: '逗号分隔' },
+        { key: 'wrongReplay', label: '错题重听数', type: 'num', min: 0 },
+        { key: 'note', label: '备注', type: 'textarea', rows: '2' }
+      ],
+      summary: function (l) {
+        return l.material + ' · ' + (l.methods || []).join('/') + ' · ' + (l.speed || '1.0') + '×';
+      },
+      detail: function (l) {
+        var bits = [];
+        if ((l.signalWords || []).length) bits.push('信号词：' + l.signalWords.join('、'));
+        if (l.wrongReplay) bits.push('重听 ' + l.wrongReplay + ' 题');
+        if (l.note) bits.push(l.note);
+        return bits.join(' · ');
+      },
+      stat: function (arr) {
+        if (!arr.length) return '共 0 次';
+        return '共 ' + arr.length + ' 次 · 最近倍速 ' + (arr[0].speed || '1.0') + '×';
+      }
+    },
+
+    reading: {
+      title: '阅读', accent: '#34c98b',
+      hint: '记什么：题型 / 题数 / 正确数 / 限时 / 错因 / 定位线索',
+      fields: [
+        { key: 'date', label: '日期', type: 'date', required: true },
+        { key: 'type', label: '题型', type: 'select', options: CET4.TAX.readingTypes, required: true },
+        { key: 'total', label: '题数', type: 'num', min: 0, required: true, live: 'rate' },
+        { key: 'correct', label: '正确数', type: 'num', min: 0, required: true, live: 'rate' },
+        { key: 'limitMinutes', label: '限时（分钟）', type: 'num', min: 0 },
+        { key: 'errorType', label: '错因分类', type: 'select', options: ['（未选）'].concat(CET4.TAX.errorTypes) },
+        { key: 'locateClue', label: '定位线索', type: 'text', placeholder: '题干圈出的关键词 / 原文出处' },
+        { key: 'note', label: '备注', type: 'textarea', rows: '2' }
+      ],
+      summary: function (l) {
+        return l.type + ' · ' + (l.correct || 0) + '/' + (l.total || 0) + ' · ' + rateStr(l.correct, l.total);
+      },
+      detail: function (l) {
+        var bits = [];
+        if (l.limitMinutes) bits.push('限时 ' + l.limitMinutes + ' 分钟');
+        if (l.errorType) bits.push('错因：' + l.errorType);
+        if (l.locateClue) bits.push('线索：' + l.locateClue);
+        if (l.note) bits.push(l.note);
+        return bits.join(' · ');
+      },
+      stat: function (arr) {
+        var t = 0, c = 0;
+        arr.forEach(function (x) { t += (+x.total || 0); c += (+x.correct || 0); });
+        return '共 ' + arr.length + ' 篇 · 累计正确率 ' + rateStr(c, t);
+      }
+    },
+
+    writing: {
+      title: '写作', accent: '#f0a23b',
+      hint: '记什么：作文类型 / 提纲 / 句式 / 用时 / 自评',
+      fields: [
+        { key: 'date', label: '日期', type: 'date', required: true },
+        { key: 'essayType', label: '作文类型', type: 'select', options: CET4.TAX.essayTypes, required: true },
+        { key: 'outline', label: '提纲', type: 'textarea', rows: '2', placeholder: '第一段… 第二段… 第三段…' },
+        { key: 'sentences', label: '可复用句式', type: 'tags', placeholder: 'It is widely acknowledged that…', hint: '逗号分隔，自动进句式库' },
+        { key: 'minutes', label: '用时（分钟）', type: 'num', min: 0 },
+        { key: 'selfReview', label: '自评', type: 'textarea', rows: '2', placeholder: '哪一段最弱 / 下次改什么' },
+        { key: 'note', label: '备注', type: 'textarea', rows: '2' }
+      ],
+      summary: function (l) {
+        return l.essayType + ' · ' + ((l.sentences || []).length) + ' 条句式';
+      },
+      detail: function (l) {
+        var bits = [];
+        if (l.minutes) bits.push('用时 ' + l.minutes + ' 分钟');
+        if (l.outline) bits.push('提纲：' + l.outline);
+        if (l.selfReview) bits.push('自评：' + l.selfReview);
+        return bits.join(' · ');
+      },
+      stat: function (arr) {
+        var n = 0;
+        arr.forEach(function (x) { n += (x.sentences || []).length; });
+        return '共 ' + arr.length + ' 篇 · 句式库 ' + n + ' 条';
+      }
+    },
+
+    translation: {
+      title: '翻译', accent: '#c77dff',
+      hint: '记什么：主题 / 自译 / 参考译文 / 固定搭配 / 用时',
+      fields: [
+        { key: 'date', label: '日期', type: 'date', required: true },
+        { key: 'topic', label: '主题', type: 'select', options: CET4.TAX.translationTopics, required: true },
+        { key: 'selfText', label: '自译', type: 'textarea', rows: '3' },
+        { key: 'refText', label: '参考译文', type: 'textarea', rows: '3' },
+        { key: 'collocations', label: '固定搭配', type: 'tags', placeholder: 'play a vital role in，with the development of', hint: '逗号分隔' },
+        { key: 'minutes', label: '用时（分钟）', type: 'num', min: 0 },
+        { key: 'note', label: '备注', type: 'textarea', rows: '2' }
+      ],
+      summary: function (l) {
+        return l.topic + ' · ' + ((l.collocations || []).length) + ' 个搭配';
+      },
+      detail: function (l) {
+        var bits = [];
+        if (l.minutes) bits.push('用时 ' + l.minutes + ' 分钟');
+        if (l.selfText) bits.push('自译：' + l.selfText);
+        if (l.note) bits.push(l.note);
+        return bits.join(' · ');
+      },
+      stat: function (arr) {
+        var n = 0;
+        arr.forEach(function (x) { n += (x.collocations || []).length; });
+        return '共 ' + arr.length + ' 段 · 搭配 ' + n + ' 个';
+      }
+    },
+
+    vocab: {
+      title: '词汇', accent: '#2fc7d6',
+      hint: '记什么：List 编号 / 词数 / 错词 / 熟词僻义',
+      fields: [
+        { key: 'date', label: '日期', type: 'date', required: true },
+        { key: 'list', label: 'List 编号', type: 'select', options: ['1', '2', '3', '4', '5', '6'], required: true },
+        { key: 'wordCount', label: '本 List 词数', type: 'num', min: 0, def: 60 },
+        { key: 'wrongWords', label: '错词', type: 'tags', placeholder: 'abandon，derive', hint: '逗号分隔' },
+        { key: 'rareMeanings', label: '熟词僻义', type: 'tags', placeholder: 'address v. 处理', hint: '逗号分隔' },
+        { key: 'note', label: '备注', type: 'textarea', rows: '2' }
+      ],
+      summary: function (l) {
+        return 'List ' + l.list + ' · ' + (l.wordCount || 60) + ' 词 · 错词 ' + ((l.wrongWords || []).length);
+      },
+      detail: function (l) {
+        var bits = [];
+        if ((l.wrongWords || []).length) bits.push('错词：' + l.wrongWords.join('、'));
+        if ((l.rareMeanings || []).length) bits.push('僻义：' + l.rareMeanings.join('、'));
+        if (l.note) bits.push(l.note);
+        return bits.join(' · ');
+      },
+      stat: function () {
+        var lp = CET4.D.listProgress(), wrong = 0;
+        CET4.D.logsOf('vocab').forEach(function (x) { wrong += (x.wrongWords || []).length; });
+        return 'List 进度 ' + lp.done + '/' + lp.total + ' · 错词 ' + wrong + ' 个';
+      }
+    },
+
+    mock: {
+      title: '模考', accent: '#ef5f6b',
+      hint: '记什么：卷型 / 听力对题 / 阅读对题 / 估分 / 用时',
+      fields: [
+        { key: 'date', label: '日期', type: 'date', required: true },
+        { key: 'examType', label: '卷型', type: 'select', options: CET4.TAX.mockTypes, required: true },
+        { key: 'listeningCorrect', label: '听力正确数', type: 'num', min: 0 },
+        { key: 'listeningTotal', label: '听力总题数', type: 'num', min: 0, def: 25 },
+        { key: 'readingCorrect', label: '阅读正确数', type: 'num', min: 0 },
+        { key: 'readingTotal', label: '阅读总题数', type: 'num', min: 0, def: 30 },
+        { key: 'estimate', label: '估分', type: 'num', min: 0, max: 710, live: 'estimate' },
+        { key: 'minutes', label: '用时（分钟）', type: 'num', min: 0 },
+        { key: 'note', label: '备注', type: 'textarea', rows: '2' }
+      ],
+      summary: function (l) {
+        return l.examType + ' · 估分 ' + (l.estimate == null ? '—' : l.estimate);
+      },
+      detail: function (l) {
+        var bits = [];
+        if (l.listeningTotal) bits.push('听力 ' + (l.listeningCorrect || 0) + '/' + l.listeningTotal);
+        if (l.readingTotal) bits.push('阅读 ' + (l.readingCorrect || 0) + '/' + l.readingTotal);
+        if (l.minutes) bits.push('用时 ' + l.minutes + ' 分钟');
+        if (l.note) bits.push(l.note);
+        return bits.join(' · ');
+      },
+      stat: function () {
+        var tr = CET4.D.mockTrend();
+        if (!tr.length) return '共 0 次';
+        return '共 ' + tr.length + ' 次 · 最新估分 ' + tr[tr.length - 1].score;
+      }
+    }
+  };
+
+  CET4.Views.modules = function (main, key) {
+    var spec = SPECS[key];
+    var D = CET4.D;
+    if (!spec) { CET4.Router.go('#/data'); return; }
+    var logs = D.logsOf(key);
+
+    U.clear(main);
+    var page = h('div', { class: 'page' });
+
+    page.appendChild(h('div', { class: 'page-head' },
+      h('a', { class: 'icon-btn txt', href: '#/data', text: '← 返回' }),
+      h('h1', { class: 'title', style: { color: spec.accent }, text: spec.title }),
+      h('span', { class: 'muted', text: logs.length ? spec.stat(logs) : '' })
+    ));
+
+    page.appendChild(h('p', { class: 'muted small', text: spec.hint }));
+
+    var formHost = h('div', { class: 'form-host' });
+    page.appendChild(h('button', {
+      class: 'btn btn-primary wide',
+      text: '+ 新增' + spec.title + '记录',
+      onclick: function () { openForm(null); }
+    }));
+    page.appendChild(formHost);
+
+    var list = h('div', { class: 'rec-list' });
+    if (!logs.length) {
+      list.appendChild(h('div', { class: 'card empty' },
+        h('p', { text: '还没有' + spec.title + '记录。' }),
+        h('p', { class: 'muted', text: '点上面的按钮，记第一条。' })
+      ));
+    }
+    logs.forEach(function (rec) { list.appendChild(recCard(rec)); });
+    page.appendChild(list);
+    page.appendChild(h('p', { class: 'muted center small', text: '共 ' + logs.length + ' 条记录' }));
+
+    main.appendChild(page);
+
+    function recCard(rec) {
+      return h('article', { class: 'card rec', style: { '--mc': spec.accent } },
+        h('div', { class: 'row between' },
+          h('span', { class: 'rec-date', text: U.fmtClock(rec.date) + ' ' + D.weekdayOf(rec.date) }),
+          h('div', { class: 'row gap8' },
+            h('button', { class: 'icon-btn txt', text: '编辑', onclick: function () { openForm(rec); } }),
+            h('button', {
+              class: 'icon-btn txt danger', text: '删除',
+              onclick: function () {
+                U.ask({ title: '删除这条记录？', body: '删除后无法恢复。', okText: '删除', danger: true })
+                  .then(function (yes) {
+                    if (!yes) return;
+                    CET4.Store.update(function (s) {
+                      s.logs[key] = s.logs[key].filter(function (x) { return x.id !== rec.id; });
+                    });
+                    U.toast('已删除');
+                    CET4.App.refresh();
+                  });
+              }
+            })
+          )
+        ),
+        h('div', { class: 'rec-main', text: spec.summary(rec) }),
+        h('div', { class: 'muted small', text: spec.detail(rec) })
+      );
+    }
+
+    function openForm(rec) {
+      U.clear(formHost);
+      var draft = rec ? JSON.parse(JSON.stringify(rec)) : {};
+      if (!rec) SPECS[key].fields.forEach(function (f) {
+        if (f.key === 'date') draft.date = D.todayISO();
+        else if (f.def !== undefined) draft[f.key] = f.def;
+        else if (f.type === 'checks') draft[f.key] = [];
+        else draft[f.key] = '';
+      });
+      if (rec) { /* 允许改日期 */ }
+      else if (!draft.date) draft.date = D.todayISO();
+
+      var getters = [];
+      var rateNote = h('div', { class: 'muted small' });
+
+      var form = h('form', {
+        class: 'card form',
+        style: { '--mc': spec.accent },
+        onsubmit: function (e) { e.preventDefault(); save(); }
+      });
+      var grid = h('div', { class: 'form-grid' });
+
+      spec.fields.forEach(function (f) {
+        var built = buildField(f, draft, rateNote);
+        getters.push({ field: f, get: built.get, el: built.el });
+        grid.appendChild(built.el);
+      });
+
+      form.appendChild(h('div', { class: 'row between' },
+        h('b', { text: (rec ? '编辑' : '新增') + spec.title + '记录' }),
+        h('button', { type: 'button', class: 'icon-btn txt', text: '取消', onclick: function () { U.clear(formHost); } })
+      ));
+      form.appendChild(grid);
+      form.appendChild(rateNote);
+      form.appendChild(h('div', { class: 'row gap mt' },
+        h('button', { class: 'btn btn-primary', type: 'submit', text: '保存记录' }),
+        h('button', { class: 'btn btn-ghost', type: 'button', text: '取消', onclick: function () { U.clear(formHost); } })
+      ));
+      formHost.appendChild(form);
+      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      var firstText = form.querySelector('input,select,textarea');
+      if (firstText) setTimeout(function () { try { firstText.focus(); } catch (e) { } }, 60);
+
+      function save() {
+        var obj = rec ? { id: rec.id } : { id: CET4.Store.nextId(key), createdAt: new Date().toISOString() };
+        var missing = [];
+        getters.forEach(function (g) {
+          var v = g.get();
+          if (g.field.required) {
+            var empty = v === '' || v === null || v === undefined ||
+              (Array.isArray(v) && v.length === 0) || (typeof v === 'number' && isNaN(v));
+            if (empty) missing.push(g.field.label);
+          }
+          obj[g.field.key] = v;
+        });
+        if (missing.length) {
+          U.toast('还需要填：' + missing.join('、'), 'bad');
+          return;
+        }
+        CET4.Store.update(function (s) {
+          if (rec) {
+            var arr = s.logs[key];
+            for (var i = 0; i < arr.length; i++) if (arr[i].id === rec.id) { arr[i] = obj; return; }
+            arr.push(obj);
+          } else {
+            s.logs[key].push(obj);
+          }
+        });
+        U.toast(rec ? '已更新' : '已保存', 'ok');
+        CET4.App.refresh();
+      }
+    }
+
+    function buildField(f, draft, rateNote) {
+      var wrap = h('div', { class: 'field' + (f.type === 'textarea' ? ' field-wide' : '') });
+      var lab = h('label', { class: 'label' }, f.label);
+      if (f.required) lab.appendChild(h('span', { class: 'req', text: '*' }));
+      if (f.hint) lab.appendChild(h('span', { class: 'counter', text: f.hint }));
+      wrap.appendChild(lab);
+
+      var get;
+
+      if (f.type === 'date') {
+        var di = h('input', { class: 'input', type: 'date' });
+        di.value = draft[f.key] || CET4.D.todayISO();
+        get = function () { return di.value; };
+        wrap.appendChild(di);
+
+      } else if (f.type === 'select') {
+        var sel = h('select', { class: 'input' });
+        f.options.forEach(function (o) {
+          sel.appendChild(h('option', { value: o, text: o }));
+        });
+        var want = draft[f.key] != null && draft[f.key] !== '' ? String(draft[f.key]) : (f.def != null ? String(f.def) : f.options[0]);
+        sel.value = want;
+        if (sel.value !== want) sel.value = f.options[0];
+        get = function () { return sel.value; };
+        wrap.appendChild(sel);
+
+      } else if (f.type === 'num') {
+        var ni = h('input', {
+          class: 'input num', type: 'number', inputmode: 'numeric',
+          min: f.min != null ? f.min : 0, max: f.max != null ? f.max : 9999
+        });
+        ni.value = (draft[f.key] == null || draft[f.key] === '') ? '' : draft[f.key];
+        get = function () { return ni.value === '' ? null : Math.max(0, Math.round(+ni.value)); };
+        wrap.appendChild(ni);
+
+      } else if (f.type === 'checks') {
+        var chosen = Array.isArray(draft[f.key]) ? draft[f.key].slice() : [];
+        var boxWrap = h('div', { class: 'checks' });
+        f.options.forEach(function (o) {
+          var cb = h('input', { type: 'checkbox', class: 'cb', checked: chosen.indexOf(o) >= 0 ? true : null });
+          boxWrap.appendChild(h('label', { class: 'check' }, cb, h('span', { text: o })));
+        });
+        get = function () {
+          var out = [];
+          var boxes = boxWrap.querySelectorAll('input[type="checkbox"]');
+          for (var i = 0; i < boxes.length; i++) if (boxes[i].checked) out.push(f.options[i]);
+          return out;
+        };
+        wrap.appendChild(boxWrap);
+
+      } else if (f.type === 'tags') {
+        var ti = h('input', { class: 'input', type: 'text', placeholder: f.placeholder || '' });
+        ti.value = U.tagsToStr(draft[f.key]);
+        get = function () { return U.parseTags(ti.value); };
+        wrap.appendChild(ti);
+
+      } else if (f.type === 'textarea') {
+        var ta = h('textarea', { class: 'input', rows: f.rows || '3', placeholder: f.placeholder || '' });
+        ta.value = draft[f.key] || '';
+        get = function () { return ta.value; };
+        wrap.appendChild(ta);
+
+      } else {
+        var xi = h('input', { class: 'input', type: 'text', placeholder: f.placeholder || '' });
+        xi.value = draft[f.key] || '';
+        get = function () { return xi.value; };
+        wrap.appendChild(xi);
+      }
+
+      return { el: wrap, get: get };
+    }
+  };
+
+  CET4.MODSPECS = SPECS;
+})();
+
+</script>
+<script>
+/* src/views/data.js */
+/* CET-4 备考台 · 数据与设置：统计 / 复盘 / 设置 */
+window.CET4 = window.CET4 || {};
+CET4.Views = CET4.Views || {};
+
+CET4.Views.data = function (main, arg) {
+  var h = CET4.UI.h, U = CET4.UI, D = CET4.D;
+  var tab = arg === 'review' ? 'review' : arg === 'settings' ? 'settings' : 'stats';
+
+  U.clear(main);
+  var page = h('div', { class: 'page' });
+
+  page.appendChild(h('div', { class: 'seg' },
+    segLink('统计', '#/data/stats', tab === 'stats'),
+    segLink('复盘', '#/data/review', tab === 'review'),
+    segLink('设置', '#/data/settings', tab === 'settings')
+  ));
+
+  if (tab === 'stats') page.appendChild(statsView());
+  else if (tab === 'review') page.appendChild(reviewView());
+  else page.appendChild(settingsView());
+
+  main.appendChild(page);
+
+  function segLink(label, href, active) {
+    return h('a', { class: 'seg-item' + (active ? ' active' : ''), href: href, text: label });
+  }
+
+  /* ==================== 统计 ==================== */
+  function statsView() {
+    var wrap = h('div');
+    var tp = D.totalProgress();
+
+    wrap.appendChild(h('section', { class: 'card' },
+      h('div', { class: 'row between' },
+        h('span', { class: 'muted', text: '总完成率（已到期天数）' }),
+        h('b', { class: 'big', text: D.pct(tp.rate) })
+      ),
+      h('div', { class: 'bar' },
+        h('div', { class: 'bar-fill', style: { width: (tp.rate ? tp.rate * 100 : 0) + '%' } })
+      ),
+      h('div', { class: 'row between mt8' },
+        h('span', { class: 'muted', text: '已到期 ' + tp.due + ' 天' }),
+        h('span', { class: 'muted', text: '累计完成 ' + tp.done + ' / 48 天' })
+      )
+    ));
+
+    var wk = D.currentWeek(), wr = D.weekRange(wk), wc = D.completion(wr);
+    wrap.appendChild(h('section', { class: 'card' },
+      h('div', { class: 'row between' },
+        h('span', { class: 'muted', text: '本周完成率 · ' + D.weekLabel(wk) }),
+        h('b', { text: D.pct(wc.rate) })
+      ),
+      h('div', { class: 'bar' },
+        h('div', { class: 'bar-fill ok', style: { width: (wc.rate ? wc.rate * 100 : 0) + '%' } })
+      ),
+      h('div', { class: 'muted', text: wc.done + ' / ' + wc.due + ' 天' })
+    ));
+
+    /* 模块投入时长 */
+    var allRange = { start: CET4.TAX.weeks[0].start, end: CET4.TAX.weeks[CET4.TAX.weeks.length - 1].end };
+    var mins = CET4.TAX.modules.map(function (m) { return { m: m, v: D.moduleMinutes(m, allRange) }; });
+    var maxMin = Math.max.apply(null, mins.map(function (x) { return x.v; }).concat([1]));
+    wrap.appendChild(h('h2', { class: 'sec-h' }, '模块投入时长'));
+    var c1 = h('section', { class: 'card' });
+    mins.forEach(function (x) {
+      c1.appendChild(barRow(x.m, x.v, maxMin, CET4.TAX.colors[x.m], U.fmtMinutes(x.v)));
+    });
+    wrap.appendChild(c1);
+
+    /* 模考趋势 */
+    var tr = D.mockTrend();
+    wrap.appendChild(h('h2', { class: 'sec-h' }, '模考估分趋势'));
+    var c2 = h('section', { class: 'card' });
+    if (!tr.length) {
+      c2.appendChild(h('div', { class: 'empty-line', text: '还没有模考记录，周六做完来记一条' }));
+    } else {
+      var lo = Math.min.apply(null, tr.map(function (x) { return x.score; }));
+      var hi = Math.max.apply(null, tr.map(function (x) { return x.score; }));
+      if (hi - lo < 40) { hi += 20; lo -= 20; }
+      var bars = h('div', { class: 'vbars' });
+      tr.slice(-8).forEach(function (p) {
+        var pctH = Math.max(6, (p.score - lo) / (hi - lo) * 100);
+        bars.appendChild(h('div', { class: 'vbar' },
+          h('span', { class: 'vb-val', text: String(p.score) }),
+          h('div', { class: 'vb-track' },
+            h('div', { class: 'vb-col', style: { height: pctH + '%' } })
+          ),
+          h('span', { class: 'vb-lab', text: U.fmtClock(p.date) })
+        ));
+      });
+      c2.appendChild(bars);
+      c2.appendChild(h('div', { class: 'muted small', text: '目标 ' + (CET4.Store.get().settings.targetScore || 425) + ' · 共 ' + tr.length + ' 次模考' }));
+    }
+    wrap.appendChild(c2);
+
+    /* 模块正确率（全部复盘合计，手改优先） */
+    wrap.appendChild(h('h2', { class: 'sec-h' }, '模块正确率'));
+    var c3 = h('section', { class: 'card' });
+    var anyAcc = false;
+    CET4.TAX.reviewModules.forEach(function (m) {
+      var t = 0, c = 0;
+      CET4.TAX.weeks.forEach(function (w) {
+        var a = D.moduleAccuracy(w.idx, m);
+        t += a.total; c += a.correct;
+      });
+      if (t > 0) anyAcc = true;
+      c3.appendChild(barRow(m, t > 0 ? c / t : 0, 1, CET4.TAX.colors[m], t > 0 ? D.pct(c / t) : '—'));
+    });
+    if (!anyAcc) c3.appendChild(h('div', { class: 'muted small', text: '复盘里填了题数与正确数后，这里会自动出正确率' }));
+    wrap.appendChild(c3);
+
+    /* 错因分布 */
+    var errs = D.errorDist('all');
+    wrap.appendChild(h('h2', { class: 'sec-h' }, '错因分布'));
+    var c4 = h('section', { class: 'card' });
+    if (!errs.length) {
+      c4.appendChild(h('div', { class: 'empty-line', text: '复盘时选了错因，这里会统计出现次数' }));
+    } else {
+      errs.sort(function (a, b) { return b.count - a.count; });
+      var maxErr = errs[0].count;
+      errs.slice(0, 11).forEach(function (e) {
+        c4.appendChild(barRow(e.type, e.count, maxErr, '#ef5f6b', e.count + ' 次'));
+      });
+    }
+    wrap.appendChild(c4);
+
+    /* 模块记录入口 */
+    wrap.appendChild(h('h2', { class: 'sec-h' }, '模块记录'));
+    var grid = h('div', { class: 'mgrid' });
+    CET4.TAX.logModules.forEach(function (key) {
+      var title = CET4.TAX.logTitles[key];
+      var logs = D.logsOf(key);
+      grid.appendChild(h('a', {
+        class: 'mcard', href: '#/m/' + key,
+        style: { '--mc': CET4.TAX.colors[title] }
+      },
+        h('span', { class: 'mname', text: title }),
+        h('b', { class: 'mval', text: String(logs.length) }),
+        h('span', { class: 'mcap', text: '条记录' })
+      ));
+    });
+    wrap.appendChild(grid);
+
+    return wrap;
+  }
+
+  function barRow(label, value, max, color, text) {
+    var pct = max > 0 ? Math.min(100, value / max * 100) : 0;
+    return h('div', { class: 'bar-row' },
+      h('span', { class: 'bl', text: label }),
+      h('div', { class: 'bar thin' },
+        h('div', { class: 'bar-fill', style: { width: pct + '%', background: color } })
+      ),
+      h('span', { class: 'bv', text: text })
+    );
+  }
+
+  /* ==================== 复盘 ==================== */
+  function reviewView() {
+    var wrap = h('div');
+    wrap.appendChild(h('p', { class: 'muted small', text:
+      '每周日复盘：填题数/正确数，选错因，写下一套卷的 1 个调整动作。总题数留空时自动汇总当周阅读日志。' }));
+
+    CET4.TAX.weeks.forEach(function (w) {
+      var rev = D.reviewOf(w.idx);
+      if (!rev) return;
+      var comp = D.completion(w);
+      var card = h('section', { class: 'card rv' },
+        h('div', { class: 'row between' },
+          h('b', { text: U.fmtClock(rev.reviewDate) + ' 复盘 · ' + w.label }),
+          h('span', { class: 'muted', text: '完成率 ' + (comp.due ? D.pct(comp.rate) : '—') })
+        )
+      );
+      CET4.TAX.reviewModules.forEach(function (m) {
+        card.appendChild(reviewRow(rev, m));
+      });
+      card.appendChild(labeledInput(rev.weekIndex, 'weekBlocker', '本周最大卡点', 60));
+      card.appendChild(labeledInput(rev.weekIndex, 'weekFocus', '下周 1 个重点', 60));
+      wrap.appendChild(card);
+    });
+    return wrap;
+  }
+
+  function reviewRow(rev, module) {
+    var acc = D.moduleAccuracy(rev.weekIndex, module);
+    var auto = D.autoCounts(rev.weekIndex, module);
+
+    var rateEl = h('span', { class: 'rv-rate', text: acc.total > 0 ? D.pct(acc.rate) : '—' });
+    var tag = h('span', { class: 'tag' + (acc.manual ? ' tag-manual' : ''), text: acc.manual ? '手改' : '自动' });
+
+    var ent = D.entryOf(rev.weekIndex, module) || {};
+
+    var totalIn = h('input', {
+      class: 'input num', type: 'number', inputmode: 'numeric', min: '0',
+      placeholder: auto.total > 0 ? String(auto.total) : '题数'
+    });
+    if (ent.totalOverride !== null && ent.totalOverride !== undefined) {
+      totalIn.value = String(ent.totalOverride);
+    }
+
+    var correctIn = h('input', {
+      class: 'input num', type: 'number', inputmode: 'numeric', min: '0',
+      placeholder: '正确数'
+    });
+    if (ent.correctOverride !== null && ent.correctOverride !== undefined) {
+      correctIn.value = String(ent.correctOverride);
+    }
+
+    totalIn.addEventListener('input', function () {
+      setOverride(rev.weekIndex, module, 'totalOverride', totalIn.value);
+      tag.textContent = (totalIn.value !== '' || correctIn.value !== '') ? '手改' : '自动';
+      tag.classList.toggle('tag-manual', tag.textContent === '手改');
+      var a = D.moduleAccuracy(rev.weekIndex, module);
+      rateEl.textContent = a.total > 0 ? D.pct(a.rate) : '—';
+    });
+    correctIn.addEventListener('input', function () {
+      setOverride(rev.weekIndex, module, 'correctOverride', correctIn.value);
+      tag.textContent = (totalIn.value !== '' || correctIn.value !== '') ? '手改' : '自动';
+      tag.classList.toggle('tag-manual', tag.textContent === '手改');
+      var a = D.moduleAccuracy(rev.weekIndex, module);
+      rateEl.textContent = a.total > 0 ? D.pct(a.rate) : '—';
+    });
+
+    var errSel = h('select', { class: 'input' });
+    errSel.appendChild(h('option', { value: '', text: '（未选）' }));
+    CET4.TAX.errorTypes.forEach(function (e) {
+      errSel.appendChild(h('option', { value: e, text: e }));
+    });
+    errSel.value = entryOf(rev.weekIndex, module).errorType || '';
+    errSel.addEventListener('change', function () {
+      setEntry(rev.weekIndex, module, 'errorType', errSel.value);
+    });
+
+    var wrongIn = h('input', { class: 'input', type: 'text', placeholder: '如 3、7、12' });
+    wrongIn.value = entryOf(rev.weekIndex, module).wrongNos || '';
+    wrongIn.addEventListener('input', function () {
+      setEntry(rev.weekIndex, module, 'wrongNos', wrongIn.value);
+    });
+
+    var nextIn = h('input', { class: 'input', type: 'text', maxlength: '80', placeholder: '下一套卷只做 1 个改变' });
+    nextIn.value = entryOf(rev.weekIndex, module).nextAction || '';
+    nextIn.addEventListener('input', function () {
+      setEntry(rev.weekIndex, module, 'nextAction', nextIn.value);
+    });
+
+    return h('div', { class: 'rv-mod', style: { '--mc': CET4.TAX.colors[module] } },
+      h('div', { class: 'row between' },
+        h('b', { class: 'rv-name', text: module }), tag
+      ),
+      h('div', { class: 'grid3' },
+        h('div', { class: 'field' }, h('label', { class: 'label', text: '总题数' }), totalIn),
+        h('div', { class: 'field' }, h('label', { class: 'label', text: '正确数' }), correctIn),
+        h('div', { class: 'field' }, h('label', { class: 'label', text: '正确率' }),
+          h('div', { class: 'rate-box' }, rateEl))
+      ),
+      h('div', { class: 'field' }, h('label', { class: 'label', text: '错题编号' }), wrongIn),
+      h('div', { class: 'field' }, h('label', { class: 'label', text: '错因分类' }), errSel),
+      h('div', { class: 'field' }, h('label', { class: 'label', text: '下一套题的 1 个调整动作' }), nextIn)
+    );
+  }
+
+  function isNum(v) { return typeof v === 'number' && !isNaN(v); }
+
+  function entryOf(weekIdx, module) {
+    var rev = D.reviewOf(weekIdx);
+    for (var i = 0; i < rev.entries.length; i++) if (rev.entries[i].module === module) return rev.entries[i];
+    return { errorType: '', wrongNos: '', nextAction: '' };
+  }
+
+  function setOverride(weekIdx, module, field, raw) {
+    var v = raw === '' ? null : Math.max(0, Math.round(+raw));
+    if (raw !== '' && isNaN(v)) v = null;
+    CET4.Store.update(function (s) {
+      var rev = byWeek(s, weekIdx);
+      var e = byModule(rev, module);
+      e[field] = v;
+    });
+  }
+
+  function setEntry(weekIdx, module, field, val) {
+    CET4.Store.update(function (s) {
+      var rev = byWeek(s, weekIdx);
+      var e = byModule(rev, module);
+      e[field] = val;
+    });
+  }
+
+  function labeledInput(weekIdx, field, label, max) {
+    var val = '';
+    var rev = D.reviewOf(weekIdx);
+    if (rev) val = rev[field] || '';
+    var counter = h('span', { class: 'counter', text: val.length + '/' + max });
+    var inp = h('input', { class: 'input', type: 'text', maxlength: max });
+    inp.value = val;
+    inp.addEventListener('input', function () {
+      counter.textContent = inp.value.length + '/' + max;
+      CET4.Store.update(function (s) {
+        byWeek(s, weekIdx)[field] = inp.value;
+      });
+    });
+    return h('div', { class: 'field' },
+      h('label', { class: 'label' }, label, counter), inp);
+  }
+
+  function byWeek(s, weekIdx) {
+    for (var i = 0; i < s.reviews.length; i++) if (s.reviews[i].weekIndex === weekIdx) return s.reviews[i];
+    return s.reviews[0];
+  }
+  function byModule(rev, module) {
+    for (var i = 0; i < rev.entries.length; i++) if (rev.entries[i].module === module) return rev.entries[i];
+    return rev.entries[0];
+  }
+
+  /* ==================== 设置 ==================== */
+  function settingsView() {
+    var S = CET4.Store.get();
+    var wrap = h('div');
+
+    wrap.appendChild(h('h2', { class: 'sec-h' }, '外观'));
+    var themes = h('div', { class: 'seg small' },
+      themeBtn('深色', 'dark'), themeBtn('浅色', 'light'));
+    wrap.appendChild(h('section', { class: 'card' }, themes));
+
+    wrap.appendChild(h('h2', { class: 'sec-h' }, '目标'));
+    var goalIn = h('input', { class: 'input num', type: 'number', inputmode: 'numeric', min: '0', max: '710' });
+    goalIn.value = S.settings.targetScore || 425;
+    goalIn.addEventListener('input', function () {
+      var v = goalIn.value === '' ? 425 : Math.max(0, Math.round(+goalIn.value));
+      CET4.Store.update(function (s) { s.settings.targetScore = v; });
+    });
+    wrap.appendChild(h('section', { class: 'card' },
+      h('div', { class: 'field' }, h('label', { class: 'label', text: '目标分' }), goalIn),
+      h('div', { class: 'row between' },
+        h('span', { class: 'muted', text: '考试日' }),
+        h('span', { text: U.fmtClock(CET4.TAX.exam.date, CET4.TAX.exam.time) })
+      ),
+      h('div', { class: 'muted small', text: '48 天计划按 2026-12-12 生成，考试日不可改。' })
+    ));
+
+    wrap.appendChild(h('h2', { class: 'sec-h' }, '存储'));
+    var size = 0;
+    try { size = JSON.stringify(S).length; } catch (e) { size = 0; }
+    var memos = S.memos || [];
+    wrap.appendChild(h('section', { class: 'card' },
+      row('存储位置', '本机浏览器 localStorage'),
+      row('占用空间', (size / 1024).toFixed(1) + ' KB'),
+      row('自动保存', CET4.Store.isFailed() ? '失败（存储不可用）' : '每次修改后 300ms'),
+      row('最后保存', U.fmtStamp(S.savedAt)),
+      row('上次导出备份', U.fmtStamp(S.settings.lastExportAt)),
+      CET4.Store.isFailed()
+        ? h('div', { class: 'banner-warn', text: '当前浏览器禁止本地存储（可能是无痕模式），数据不会保存。' })
+        : null
+    ));
+
+    wrap.appendChild(h('h2', { class: 'sec-h' }, '备份'));
+    wrap.appendChild(h('section', { class: 'card' },
+      h('p', { class: 'muted small', text: '换手机 / 换浏览器 / 清缓存前，先导出 JSON；到新设备再导入。' }),
+      h('div', { class: 'row gap wrap' },
+        h('button', { class: 'btn btn-primary', text: '导出备份', onclick: CET4.A.exportNow }),
+        h('button', { class: 'btn btn-ghost', text: '导入备份', onclick: CET4.A.importPick }),
+        h('button', {
+          class: 'btn btn-ghost', text: '恢复上一份',
+          onclick: function () {
+            U.ask({ title: '恢复上一份备份？', body: '会用上一份自动保存的内容替换当前数据。', okText: '恢复' })
+              .then(function (yes) {
+                if (!yes) return;
+                var r = CET4.Store.restorePrev();
+                if (r.ok) { U.toast('已恢复上一份备份', 'ok'); CET4.App.fullRefresh(); }
+                else U.toast(r.error, 'bad');
+              });
+          }
+        })
+      )
+    ));
+
+    wrap.appendChild(h('h2', { class: 'sec-h' }, '备忘（共 ' + memos.length + ' 条）'));
+    var memoCard = h('section', { class: 'card' });
+    if (!memos.length) memoCard.appendChild(h('div', { class: 'empty-line', text: '没有备忘' }));
+    memos.forEach(function (m) {
+      memoCard.appendChild(h('div', { class: 'row between memo-row' },
+        h('span', { class: m.done ? 'memo-txt done-txt' : 'memo-txt', text: m.text }),
+        h('button', {
+          class: 'icon-btn', text: '×',
+          onclick: function () { CET4.A.delMemo(m.id); }
+        })
+      ));
+    });
+    wrap.appendChild(memoCard);
+
+    wrap.appendChild(h('h2', { class: 'sec-h' }, '危险操作'));
+    wrap.appendChild(h('section', { class: 'card danger-card' },
+      h('p', { class: 'muted small', text: '清空会删除全部打卡、记录、复盘与备忘，且不可撤销。建议先导出备份。' }),
+      h('button', {
+        class: 'btn btn-danger', text: '清空所有数据',
+        onclick: function () {
+          U.ask({
+            title: '清空所有数据？',
+            body: '此操作不可撤销。请输入「清空」确认。',
+            requireText: '清空', okText: '清空', danger: true
+          }).then(function (yes) {
+            if (!yes) return;
+            CET4.Store.reset();
+            U.toast('已清空，回到初始数据', 'ok');
+            CET4.App.fullRefresh();
+          });
+        }
+      })
+    ));
+
+    wrap.appendChild(h('p', { class: 'muted center small', text: 'CET-4 备考台 v1.0 · 纯本地网页 · 无账号无联网' }));
+
+    return wrap;
+
+    function themeBtn(label, val) {
+      return h('button', {
+        type: 'button',
+        class: 'seg-item' + (S.settings.theme === val ? ' active' : ''),
+        text: label,
+        onclick: function (e) {
+          e.preventDefault();
+          CET4.Store.update(function (s) { s.settings.theme = val; });
+          CET4.App.applyTheme();
+          CET4.App.refresh();
+        }
+      });
+    }
+    function row(k, v) {
+      return h('div', { class: 'row between' },
+        h('span', { class: 'muted', text: k }), h('span', { text: v }));
+    }
+  }
+};
+
+</script>
+<script>
+/* src/app.js */
+/* CET-4 备考台 · 启动与渲染调度 */
+window.CET4 = window.CET4 || {};
+
+CET4.App = (function () {
+  var started = false;
+  var lastKey = null;
+
+  function applyTheme() {
+    var s = CET4.Store.get();
+    var t = (s && s.settings && s.settings.theme) || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', t === 'light' ? '#f5f7fb' : '#0f1218');
+  }
+
+  function markTab(route) {
+    var group = route.page === 'm' ? 'data' : route.page;
+    var links = document.querySelectorAll('#tabs a');
+    for (var i = 0; i < links.length; i++) {
+      var on = links[i].getAttribute('data-tab') === group;
+      links[i].classList.toggle('active', on);
+      if (on) links[i].setAttribute('aria-current', 'page');
+      else links[i].removeAttribute('aria-current');
+    }
+  }
+
+  function errorBox(e) {
+    var box = document.createElement('div');
+    box.className = 'card empty';
+    var p1 = document.createElement('p');
+    p1.textContent = '这一页渲染出错了：' + (e && e.message ? e.message : String(e));
+    var p2 = document.createElement('p');
+    p2.className = 'muted small';
+    p2.textContent = '可以先点下面的按钮回到首页。数据已经保存在本机，不会丢。';
+    var a = document.createElement('a');
+    a.className = 'btn btn-ghost';
+    a.href = '#/home';
+    a.textContent = '回首页';
+    box.appendChild(p1);
+    box.appendChild(p2);
+    box.appendChild(a);
+    return box;
+  }
+
+  function refresh() {
+    if (!started) return;
+    var route = CET4.Router.parse();
+    var main = document.getElementById('view');
+    var state = CET4.Store.get();
+    CET4.D.setState(state);
+    applyTheme();
+
+    try {
+      if (route.page === 'm') CET4.Views.modules(main, route.arg);
+      else if (route.page === 'today') CET4.Views.today(main, route.arg);
+      else if (route.page === 'data') CET4.Views.data(main, route.arg);
+      else CET4.Views.home(main);
+    } catch (e) {
+      if (window.console && console.error) console.error(e);
+      main.textContent = '';
+      main.appendChild(errorBox(e));
+    }
+
+    markTab(route);
+
+    var names = { home: '首页', today: '今日计划', data: '数据与设置', m: '模块记录' };
+    document.title = (names[route.page] || '首页') + ' · CET-4 备考台';
+
+    var key = route.page + '/' + (route.arg || '');
+    if (key !== lastKey) {
+      lastKey = key;
+      window.scrollTo(0, 0);
+    }
+  }
+
+  function fullRefresh() {
+    applyTheme();
+    refresh();
+    if (CET4.Store.isCorrupt()) {
+      CET4.UI.toast('本地数据损坏，已使用初始数据', 'warn');
+    }
+  }
+
+  function boot() {
+    if (started) return;
+    CET4.Store.init();
+    CET4.D.setState(CET4.Store.get());
+    applyTheme();
+    started = true;
+    CET4.Router.start(refresh);
+
+    document.addEventListener('keydown', function (e) {
+      if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
+        e.preventDefault();
+        var ok = CET4.Store.flush();
+        CET4.UI.toast(ok ? '已保存到本机浏览器' : '保存失败：存储不可用', ok ? 'ok' : 'bad');
+      }
+    });
+
+    if (!CET4.Store.available()) {
+      CET4.UI.toast('浏览器禁止本地存储，数据不会被保存', 'bad');
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+
+  return { refresh: refresh, fullRefresh: fullRefresh, applyTheme: applyTheme, boot: boot };
+})();
+
+</script>
+</body>
+</html>
